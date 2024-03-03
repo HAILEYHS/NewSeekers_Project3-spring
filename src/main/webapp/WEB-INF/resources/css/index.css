@@ -1,0 +1,522 @@
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SUITE-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+
+
+* {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'NPSfontBold';
+    /* border: 1px solid black; */
+}
+
+
+/*모달창 css*/
+.modal-body {
+	text-align: center;
+	/* 모달 내용 가운데 정렬 */
+}
+
+/* 모달창 전체 크기 조절 */
+.modal-dialog {
+	max-width: 400px;
+}
+
+/*----------------------------------- 캐러셀 */
+
+#carousel1 {
+    margin-top: 80px;
+}
+
+.carousel-caption {
+    background: rgba(255, 255, 255, 0.535);
+}
+
+.carousel-item {
+    position: relative;
+}
+
+
+.btn1 {
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    position: absolute;
+    top: 72%;
+    left: 75%;
+    background: rgba(255, 255, 255, 0.369);
+    border-radius: 10px;
+
+}
+
+.btn3 {
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    position: absolute;
+    top: 72%;
+    left: 15%;
+    background: rgba(255, 255, 255, 0.369);
+    border-radius: 10px;
+}
+
+@media all and (max-width: 686px) {
+    .btn1 {
+        width: 70px;
+        height: 20px;
+        text-align: center;
+        position: absolute;
+        top: 67%;
+        left: 75%;
+        background: #ffffff5e;
+        border-radius: 10px;
+        font-size: 0.7rem;
+    }
+
+    .btn3 {
+        width: 70px;
+        height: 20px;
+        text-align: center;
+        position: absolute;
+        top: 70%;
+        left: 15%;
+        background: rgba(255, 255, 255, 0.369);
+        border-radius: 10px;
+        font-size: 0.7rem;
+
+    }
+
+}
+
+
+/* -------------------------- board */
+.intro {
+    padding-top: 30px;
+    width: 80%;
+
+}
+
+.intro1 img {
+    margin-top: 30px;
+    width: 900px;
+}
+
+.intro2 {
+    border-left: 4px dashed #ccc;
+    padding-left: 20px;
+}
+
+#j_board_list {
+    width: 100%;
+    border-top: 2px solid black;
+}
+
+
+.success {
+    padding: 15px 0px 15px 0px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+#board-table {
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+
+
+/*---------------------------- One */
+
+#one {
+    margin: 50px 0px 30px 0px;
+    padding: 10px 0px 100px 0px;
+    text-align: center;
+    width: 100%;
+    background-color: #d0cecea1;
+
+}
+
+#one_ment {
+    text-align: start;
+    font-size: 1.5rem;
+    width: 50%;
+    padding-left: 20px;
+    margin: 100px 0px 60px 80px;
+    /* margin-left: 20%; */
+    border-left: 5px solid rgba(86, 158, 148, 0.925);
+}
+
+#site {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+#recommend_site1 {
+    margin: 0 auto;
+}
+
+#recommend_site2 {
+    margin: 0 auto;
+}
+
+#recommend_img1 {
+    background-image: url(../img/park1.PNG);
+    /* background-repeat: no-repeat; */
+    background-size: 100% 100%;
+    height: 250px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#recommend_img2 {
+    background-image: url(../img/park2_1.PNG);
+    /* background-repeat: no-repeat; */
+    background-size: 100% 100%;
+    height: 250px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#recommend_img3 {
+    background-image: url(../img/park3.jpg);
+    background-size: 100% 100%;
+    height: 250px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#recommend_img4 {
+    background-image: url(../img/park4.jpg);
+    background-size: 100% 100%;
+    height: 250px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    margin-bottom: 20px;
+}
+
+#recommend_img5 {
+    background-image: url(../img/park5.jpg);
+    background-size: 100% 100%;
+    height: 250px;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.menu {
+    width: 100%;
+    height: 100px;
+}
+
+.btn {
+    background-color: #ccccccae;
+    border-radius: 20px;
+    font-size: 0.8rem;
+}
+
+.recommend_site {
+    width: 100%;
+    margin: 0 auto;
+}
+
+
+
+
+.recommend:nth-child(1),
+.recommend:nth-child(2),
+.recommend:nth-child(3),
+.recommend:nth-child(4),
+.recommend:nth-child(5) {
+    width: 255px;
+    height: 420px;
+    padding: 0;
+    margin: 0 auto;
+    box-shadow: 0px 0px 15px rgb(118, 117, 117);
+    transition: 0.2s;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.recommend:hover {
+    transform: translate(5px, -5px);
+}
+
+.icon_ment1 {
+    margin-top: 20px;
+}
+
+@media all and (max-width:899px) {
+    #one {
+        width: 100%;
+
+    }
+
+    #one_ment {
+        font-size: 1.2rem;
+        width: 90%;
+        padding-left: 20px;
+        margin: 100px 0px 30px 50px;
+        border-left: 5px solid rgba(86, 158, 148, 0.925);
+        /* text-align: left; */
+    }
+
+
+    #menu1,
+    #menu2,
+    #menu3,
+    #menu4 {
+
+        font-size: 0.8rem;
+    }
+
+    .recommend:nth-child(1),
+    .recommend:nth-child(2),
+    .recommend:nth-child(3),
+    .recommend:nth-child(4),
+    .recommend:nth-child(5) {
+        margin-top: 5%;
+        width: 300px;
+        height: 400px;
+        /* background-color: black; */
+    }
+}
+
+@media (max-width: 1399px) {
+    #recomend_site2 {
+        margin-top: 3%;
+    }
+}
+
+@media all and (max-width: 1430px) {
+
+    .recommend {
+        width: 300px;
+        height: 450px;
+    }
+
+    .menu {
+        width: 100%;
+    }
+
+    .recommend_img {
+
+        background-size: 100% 100%;
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        height: 250px;
+        margin-bottom: 20px;
+    }
+
+    .recommend_img img {
+        width: 100%;
+        height: 100%;
+    }
+
+
+
+}
+
+
+@media (min-width: 1431px) {
+
+    .menu {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+
+
+
+    #recommend0 {
+        background: url(../img/siterecomend2.PNG);
+        background-size: 100% 100%;
+        width: 400px;
+        height: 450px;
+
+    }
+
+
+
+    .recommend_img {
+
+        /* background-size: 100% 100%; */
+        /* width: 280px; */
+        height: 250px;
+        margin-bottom: 20px;
+    }
+
+    .recommend_img img {
+        border-top-right-radius: 8px;
+        border-top-left-radius: 8px;
+        width: 100%;
+        height: 100%;
+    }
+
+    .recommend {
+        width: 290px;
+        height: 420px;
+        border: 3px solid #ccc;
+        border-radius: 8px;
+
+        padding: 0;
+        /* float: right; */
+        margin-right: 1%;
+        background-color: white;
+        box-shadow: 0px 0px 15px rgb(118, 117, 117);
+        transition: 0.2s;
+    }
+
+    .recommend:hover {
+        transform: translate(5px, -5px);
+    }
+
+}
+
+
+
+
+/* ---------------------------예방법 */
+#safety {
+    width: 80%;
+    height: 100%;
+    /* background-color: aqua; */
+}
+
+.safe_ment {
+    /* background-color: yellowgreen; */
+    font-size: 1.5rem;
+    width: 60%;
+    padding-left: 20px;
+    margin: 0px 0px 60px 50px;
+    border-left: 5px solid rgba(86, 158, 148, 0.925);
+}
+
+#safetyMenu {
+    display: flex;
+    text-align: center;
+}
+
+
+#safetyMenu1 {
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+}
+
+#safetyMenu2 {
+    width: 100%;
+    justify-content: space-around;
+    display: flex;
+}
+
+.icon img {
+    width: 150px;
+    height: 110px;
+}
+
+.icon_ment1 {
+    font-size: 1.3rem;
+    text-align: left;
+    padding-left: 40px;
+    border-bottom: #ccc;
+}
+
+
+
+.icon_ment2 {
+    font-family: 'SUITE-Regular';
+    font-size: 1rem;
+    font-weight: bolder;
+    padding-left: 25px;
+    text-align: left;
+    margin-top: 30px;
+}
+
+@media (max-width: 1037px) {
+    #safetyMenu {
+        display: block;
+    }
+
+    .safe_ment {
+        /* background-color: yellowgreen; */
+        font-size: 1.1rem;
+        width: 80%;
+        padding-left: 20px;
+        margin: 100px 0px 20px 50px;
+        border-left: 5px solid rgba(86, 158, 148, 0.925);
+    }
+
+
+}
+
+
+/*---------------------------- footer */
+#ft {
+    width: 100%;
+    height: 5%;
+    margin-top: 80px;
+    font-size: 0.8rem;
+    padding: 20px 20px 20px 20px;
+}
+
+#ft1 {
+    width: 100%;
+}
+
+#ft2 {
+
+    width: 100%;
+    display: flex;
+}
+
+#ft2 div {
+    width: 100%;
+    text-align: center;
+}
+
+#footer1 {
+    display: flex;
+    /* background-color: aqua; */
+    width: 100%;
+}
+
+
+
+
+/* 링크 a태그 데코레이션 빼려고 */
+
+a:link {
+    /* 텍스트 링크 들어가기전 */
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    /* 텍스트 링크 들어갔던것 */
+    text-decoration: none;
+    color: black;
+}
+
+a:active {
+    /* 텍스트 링크 클릭하고 뗄때까지 */
+    text-decoration: none;
+    /* 텍스트 링크 밑줄 없애기 */
+    color: black;
+}
