@@ -284,7 +284,7 @@ st/css/bootstrap.min.css"
     </div>
 
 
-<!-- -------------- footer ---------------- -->
+<!-- footer -->
 <jsp:include page="./include/footer.jsp" />
 
 <!-- -------------- script ---------------- -->
