@@ -35,9 +35,10 @@
 	</select>
 	<select id="indexList" resultMap="getBoard">
 	    <![CDATA[
-		SELECT * 
+		SELECT community_num, user_Id, title, 
+		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created  
 		FROM ( SELECT * FROM COMMUNITY ORDER BY community_num DESC) 
-		WHERE ROWNUM<=6
+		WHERE ROWNUM<=7
     	]]>
 	</select>
 	<update id="upHit" parameterType="string">
@@ -46,12 +47,16 @@
 	</update>
 	<select id="contentView" parameterType="string"
 		resultMap="getBoard">
-		select * from COMMUNITY where community_num=
+		select community_num, user_Id, title, content,
+		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created,
+		hit from COMMUNITY where community_num=
 		#{community_num}
 	</select>
 	<select id="modifyView" parameterType="string"
 		resultMap="getBoard">
-		select * from COMMUNITY where community_num=
+		select community_num, user_Id, title, content,
+		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created 
+		from COMMUNITY where community_num=
 		#{community_num}
 	</select>
 	<update id="modify"
@@ -72,7 +77,9 @@
 	</insert>
 	<select id="reply_view" parameterType="string"
 		resultMap="getBoard">
-		select * from COMMUNITY where community_num=
+		select community_num, user_Id, title, content,
+		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created, 
+		hit from COMMUNITY where community_num=
 		#{community_num}
 	</select>
 	<insert id="reply"
