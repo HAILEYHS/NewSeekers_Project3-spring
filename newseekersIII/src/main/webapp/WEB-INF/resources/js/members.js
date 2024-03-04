@@ -1,70 +1,85 @@
 
-function infoConfirm(){
-	if(document.reg_frm.id.value.length == 0){
-		alert("아이디는 필수사항입니다.");
-		reg_frm.id.focus();
-		return;
-	}
+function joinform_check(){
+	var user_id = document.getElementsById("user_id");
+	var user_pw = document.getElementsById("user_pw");
+	var user_pw2 = document.getElementsById("user_pw2");
+	var name = document.getElementsById("name");
+	var email = document.getElementsById("email");
+	var address = document.getElementsById("address");
+	var agree = document.getElementsById("agree");
 	
-	if(document.reg_frm.id.value.length < 4){
-		alert("아이디는 4글자 이상이어야 합니다.");
-		reg_frm.id.focus();
-		return;
-	}
-	if(document.reg_frm.pw.value.length == 0){
-		alert("비밀번호는 필수사항입니다.");
-		reg_frm.pw.focus();
-		return;
-	}
-	if(document.reg_frm.name.value.length == 0){
-		alert("이름은 필수사항입니다.");
-		reg_frm.name.focus();
-		return;
-	}
-	
-	if(!document.reg_frm.agree.checked){
-		alert("약관동의에 체크 해주세요");
-		reg_frm.agree.focus();
-		return;
-	}
-	if(document.reg_frm.eMail.value.length == 0){
-		alert("메일은 필수사항입니다.");
-		reg_frm.eMail.focus();
-		return;
-	}
-	if(document.reg_frm.eMail.value.indexOf('@')===-1){
-		alert("메일에 @를 포함시켜주세요");
-		reg_frm.eMail.focus();
-		return;
-	}
-	
-	document.reg_frm.submit();
+	 if(user_id.value.length == 0) {
+            alert("아이디는 필수 항목입니다.");
+            user_id.focus();
+            return false;
+     };
+     if(user_id.value.length < 4) {
+            alert("아이디는 최소 4자 이상이어야 합니다.");
+            user_id.focus();
+            return false;
+     };
+     if(user_pw.value.length === 0) {
+            alert("비밀번호는 필수 항목입니다.");
+            user_pw.focus();
+            return false;
+     };
+     if(user_pw2.value.length === 0) {
+            alert("비밀번호 확인은 필수 항목입니다.");
+            user_pw2.focus();
+            return false;
+     };
+     if(user_pw.value !== user_pw2.value) {
+            alert("비밀번호가 일치하지 않습니다.");
+            user_pw2.focus();
+            return false;
+     };
+     if(name.value.length === 0) {
+            alert("이름은 필수 항목입니다.");
+            name.focus();
+            return false;
+     };
+     if(email.value.length === 0) {
+            alert("이메일은 필수 항목입니다.");
+            email.focus();
+            return false;
+     };
+     if(!agree.checked) {
+            alert("약관에 동의해주세요.");
+            agree.focus();
+            return false;
+     };
+     
+     document.joinForm.submit();
+     
 }
-
+  
+  
+  
+  
    function updateInfoConfirm(){
-	   if(document.reg_frm.pw.value == ""){
+	   if(document.updateForm.user_pw.value == ""){
 			alert("패스워드를 입력하세요.");
-			document.reg_frm.pw.focus();
+			document.updateForm.user_pw.focus();
 			return;
 		}
 	   
-	   if(document.reg_frm.pw.value!= document.reg_frm.pw_check.value){
+	   if(document.updateForm.user_pw.value!= document.updateForm.user_pw_check.value){
 			alert("비밀번호가 일치하지 않습니다.");
-			reg_frm.pw.focus();
+			updateForm.user_pw.focus();
 			return;
 		}
 	   
-	   if(document.reg_frm.eMail.value.length== 0){
+	   if(document.updateForm.eMail.value.length== 0){
 			alert("메일은 필수사항입니다.");
-			reg_frm.eMail.focus();
+			updateForm.user_email.focus();
 			return;
 		}
 	   
-	   if(document.reg_frm.eMail.value.indexOf('@')===-1){
+	   if(document.updateForm.eMail.value.indexOf('@')===-1){
 			alert("메일에 @를 포함시켜주세요");
-			reg_frm.eMail.focus();
+			updateForm.user_emuser_ail.focus();
 			return;
 		}
 	   
-	   document.reg_frm.submit();
+	   document.updateForm.submit();
    }

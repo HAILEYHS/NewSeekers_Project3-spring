@@ -42,7 +42,6 @@ public class BoardController {
 	
 	@GetMapping(value = "/")
 	public String indexList(Model model) {
-		System.out.println("컨트롤러 들어옴");
 		List<BoardVO> indexList = boardService.indexList();
 		model.addAttribute("indexList", indexList);
 		return "/Index";
@@ -63,7 +62,6 @@ public class BoardController {
 	}
 	@PostMapping(value = "/board/modify")
 	public String modify(BoardVO board, Model model) {
-		System.out.println("Board컨트롤러 modify메소드 들어옴");
 		int result = boardService.modify(board);
 		if (result == 1) {
 			//model.addAttribute("message", "수정에 성공했습니다.");

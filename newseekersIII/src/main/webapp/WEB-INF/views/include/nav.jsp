@@ -30,20 +30,19 @@
 				</a></li>
 				<!-- 세션 체크 -->
 				<%
-					if (session.getAttribute("ValidMem") != null) {
+					String user_id = (String)session.getAttribute("user_id");
+					if (user_id != null) {
 				%>
 				<!-- 사용자가 로그인한 경우 -->
 				<li class="nav-item"><a class="nav-link" id="myPageButton"
 					data-bs-toggle="modal" data-bs-target="#myPageModal">
 						<p>마이페이지</p>
 				</a></li>
-
-
 				<%
 					} else {
 				%>
 				<!-- 로그인하지 않은 경우 -->
-				<li class="nav-item"><a class="nav-link" href="login.do">
+				<li class="nav-item"><a class="nav-link" href="/newseekers/member/login">
 						<p>로그인</p>
 				</a></li>
 				<%

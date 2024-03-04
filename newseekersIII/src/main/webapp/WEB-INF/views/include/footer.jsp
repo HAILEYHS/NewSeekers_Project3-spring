@@ -20,14 +20,14 @@
 			</DIV>
 			<!-- 모달 내용 부분 -->
 			<div class="modal-body">
-				<img id="profileImage" src="./img/profile.png" alt="프로필 이미지">
+				<img id="profileImage" src="../img/profile.png" alt="프로필 이미지">
 			</div>
 			<div class="modal-footer">
 				<!-- 로그아웃 및 수정 버튼 -->
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-					onclick="javascript:window.location='logout.do'">로그아웃</button>
+					onclick="javascript:window.location='/member/logout'">로그아웃</button>
 				<button type="button" class="btn btn-success"
-					onclick="javascript:window.location='modifyLogin.do?id=<%=session.getAttribute("ValidMem")%>'">수정</button>
+					onclick="javascript:window.location='/member/modifyLogin?id=<%=session.getAttribute("user_id")%>'">수정</button>
 			</div>
 		</div>
 	</div>
