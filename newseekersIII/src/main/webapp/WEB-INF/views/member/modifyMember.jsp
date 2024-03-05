@@ -1,35 +1,46 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<title>회원정보 수정</title>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<!-- Bootstrap -->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+	crossorigin="anonymous">
 <!-- css -->
+<link rel="stylesheet" href="<c:url value='../css/join.css'/>">
 <link rel="stylesheet" href="<c:url value='../css/header.footer.css'/>">
-<link rel="stylesheet" href="<c:url value='../css/board.css'/>">
-<!-- java script -->
-<script src="../js/members.js"></script>
+
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<title>회원가입</title>
+<script src="../js/memberModify.js" ></script>
+
 </head>
 
 <body>
 	<!-- header -->
 	<jsp:include page="../include/nav.jsp" />
-	<form action="newseekers/member/modifyLogin" method="post" name="updateForm">
+	<form action="/newseekers/member/modifyMember" method="post" name="updateForm">
 		<div id="container">
 			<h2>
 				회원정보 수정을 위한<br>정보를 입력해주세요.
 			</h2>
-			아이디:&nbsp;&nbsp; ${member.user_id} <br><br>
-			비밀번호:<input type="password" name="user_pw" size="20" placeholder="변경할 비밀번호를 입력해주세요"
-				required><br />
-			비밀번호 확인:<input type="password" name="user_pw_check" size="20" placeholder="다시 한번 입력해주세요" required><br>
-			이름:&nbsp;&nbsp; ${member.name} <br><br>
-			메일:<input type="email" name="email" size="40" value="${member.email}" required><br><br> 
-			주소:<input type="text" name="address" size="50" value="${member.address}" required><br><br><br> 
-			<input type="button" value="수정" onclick="updateInfoConfirm()">&nbsp;&nbsp;&nbsp;
-			<input type="reset" value="취소" 	onclick="javascript:window.location='/member/login'">
+
+			<label>아이디&nbsp;:&nbsp;&nbsp;<input type="hidden" name="user_id" id="user_id" value="${member.user_id}">${member.user_id}</label>
+			<label>비밀번호:<input type="password" name="user_pw" id="user_pw"></label>
+			<label>비밀번호 확인:<input type="password" name="user_pw2" id="user_pw2"></label>
+			<label>이름:&nbsp;&nbsp;<input type="hidden" name="name" id="name" value="${member.name}"> ${member.name}</label>
+			<label>메일:<input type="text" name="email" id="email" value="${member.email}"></label>
+			<label>주소:<input type="text" name="address" id="address" value="${member.address}"></label>
+			<div class="bt"><button type="button" onclick="updateInfoConfirm()">수정</button></div>
+			<!-- 
+			<div class="bt"><button type="button" onclick="jacascript:window.location='/newseekers/member/join'">회원탈퇴</button></div>
+			 -->
+			<div class="bt"><button type="reset" onclick="history.back()">취소</button></div>
 		</div>
 	</form>
 		<!-- footer -->

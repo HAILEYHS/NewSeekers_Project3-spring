@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
 
@@ -15,20 +15,21 @@
 				aria-label="Close"></button>
 			<DIV class="modal-header">
 				<h5 class="modal-title" id="modalLable">
-					<%=session.getAttribute("name")%>님 반갑습니다.
+					<c:out value="${sessionScope.name}" />님 반갑습니다.
 				</h5>
 			</DIV>
 			<!-- 모달 내용 부분 -->
 			<div class="modal-body">
-				<img id="profileImage" src="../img/profile.png" alt="프로필 이미지">
+				<img src="./img/profile.png"  id="profileImage" alt="프로필 이미지">
 			</div>
 			<div class="modal-footer">
 				<!-- 로그아웃 및 수정 버튼 -->
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
-					onclick="javascript:window.location='/member/logout'">로그아웃</button>
+					onclick="javascript:window.location='/newseekers/member/logout'">로그아웃</button>
 				<button type="button" class="btn btn-success"
-					onclick="javascript:window.location='/member/modifyLogin?id=<%=session.getAttribute("user_id")%>'">수정</button>
+    onclick="javascript:window.location='/newseekers/member/modifyMember?id=${sessionScope.user_id}'">수정</button>
 			</div>
+
 		</div>
 	</div>
 </div>

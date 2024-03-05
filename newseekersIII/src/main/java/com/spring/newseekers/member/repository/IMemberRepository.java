@@ -6,6 +6,7 @@ import com.spring.newseekers.member.model.MemberVO;
 
 public interface IMemberRepository {
 	void insertMember(MemberVO member);
+	public int selectId(String user_id);
 	MemberVO selectMember(String user_id);
 	List<MemberVO> selectAllMembers();
 	void updateMember(MemberVO member);

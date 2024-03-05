@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<fmt:setBundle basename="i18n/member"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +17,7 @@
 <link rel="stylesheet" href="<c:url value='../css/header.footer.css'/>">
 
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-<title>회원가입</title>
+<title>회원탈퇴</title>
 <script src="../js/memberJoin.js" ></script>
 
 </head>
@@ -28,7 +29,7 @@
 	<form action="/newseekers/member/join" method="post" name="joinForm">
 		<div id="container">
 			<h2>
-				회원가입을 위해<br>정보를 입력해주세요.
+				회원탈퇴를 위해<br>정보를 입력해주세요.
 			</h2>
 			<label>아이디:<input type="text" name="user_id" id="user_id" autofocus></label>
 			<div id="user_id_check"></div>
