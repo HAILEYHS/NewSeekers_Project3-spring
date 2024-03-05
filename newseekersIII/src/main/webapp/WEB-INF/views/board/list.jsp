@@ -48,7 +48,7 @@
 						<div class="num">${dto.community_num}</div>
 						<div class="title">
 							<c:forEach begin="1" end="${dto.indent_num}">RE : </c:forEach>
-							<a href="content_view.do?community_num=${dto.community_num}">${dto.title}</a>
+							<a href="content_view?community_num=${dto.community_num}">${dto.title}</a>
 						</div>
 						<div class="writer">${dto.user_Id}</div>
 
@@ -60,27 +60,27 @@
 
 			<div class="board_page">
 
-				<a href="list.do?page=1" class="bt first"> << </a>
+				<a href="/newseekers/board/list?currentPage=1" class="bt first"> << </a>
 
 				<c:choose>
 					<c:when test="${currentPage > 1}">
-						<a href="list.do?page=${currentPage - 1}" class="bt  prev"><</a>
+						<a href="/newseekers/board/list?currentPage=${currentPage - 1}" class="bt  prev"><</a>
 					</c:when>
 				</c:choose>
 
 				<c:forEach var="pageNumber" begin="${startPage}" end="${endPage}">
 					<c:set var="onClass"
 						value="${pageNumber eq currentPage ? 'on' : ''}" />
-					<a href="list.do?page=${pageNumber}" class="num ${onClass}">${pageNumber}</a>
+					<a href="/newseekers/board/list?currentPage=${pageNumber}" class="num ${onClass}">${pageNumber}</a>
 				</c:forEach>
 
 				<c:choose>
 					<c:when test="${currentPage < pageBtnNum}">
-						<a href="list.do?page=${currentPage + 1}" class="bt next">></a>
+						<a href="/newseekers/board/list?currentPage=${currentPage + 1}" class="bt next">></a>
 					</c:when>
 				</c:choose>
 
-				<a href="list.do?page=${pageBtnNum}" class="bt last">>></a>
+				<a href="/newseekers/board/list?currentPage=${pageBtnNum}" class="bt last">>></a>
 
 			</div>
 

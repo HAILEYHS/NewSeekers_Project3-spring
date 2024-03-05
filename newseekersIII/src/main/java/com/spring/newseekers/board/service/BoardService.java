@@ -15,11 +15,13 @@ public class BoardService implements IBoardService {
 	IBoardRepository boardRepository;
 
 	@Override
-	public List<BoardVO> getList(int page) {
+	public List<BoardVO> getList(int currentPage) {
 	    int showListNum = 10; // 한 페이지에 보여줄 글의 개수
-	    int startRow = (page - 1) * showListNum + 1; // 페이지의 시작 행 번호
+	    int startRow = (currentPage - 1) * showListNum + 1; // 페이지의 시작 행 번호
 	    int endRow = startRow + showListNum - 1; // 페이지의 끝 행 번호
-	    return boardRepository.getList(startRow, endRow); // boardRepository를 통해 글 목록을 가져와서 반환
+	    System.out.println("startRow : "+startRow);
+	    System.out.println("endRow :"+endRow);
+	    return boardRepository.getList(11, 20); // boardRepository를 통해 글 목록을 가져와서 반환
 	}
 
 

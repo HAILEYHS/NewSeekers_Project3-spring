@@ -27,7 +27,6 @@
 		FROM COMMUNITY
 		)
 		WHERE rnum BETWEEN #{startRow} AND #{endRow}
-
 	</select>
 	<select id="getListSize" resultType="int">
 		select count(*) from

@@ -24,7 +24,7 @@
 <body>
 	<!-- header -->
 	<jsp:include page="../include/nav.jsp" />
-	<form action="/newseekers/member/modifyMember" method="post" name="updateForm">
+	<form action="/newseekers/member/modifyMember" method="post" name="updateForm" id="formTag">
 		<div id="container">
 			<h2>
 				회원정보 수정을 위한<br>정보를 입력해주세요.
@@ -37,9 +37,7 @@
 			<label>메일:<input type="text" name="email" id="email" value="${member.email}"></label>
 			<label>주소:<input type="text" name="address" id="address" value="${member.address}"></label>
 			<div class="bt"><button type="button" onclick="updateInfoConfirm()">수정</button></div>
-			<!-- 
-			<div class="bt"><button type="button" onclick="jacascript:window.location='/newseekers/member/join'">회원탈퇴</button></div>
-			 -->
+			<div class="bt"><button type="button" onclick="memberDelete()">회원탈퇴</button></div>
 			<div class="bt"><button type="reset" onclick="history.back()">취소</button></div>
 		</div>
 	</form>

@@ -25,7 +25,7 @@
 				<li class="nav-item"><a class="nav-link" href="../preview.jsp">
 						<p>예측서비스</p>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="/newseekers/board/list?page=1">
+				<li class="nav-item"><a class="nav-link" href="/newseekers/board/list?currentPage=1">
 						<p>커뮤니티</p>
 				</a></li>
 				<!-- 세션 체크 -->

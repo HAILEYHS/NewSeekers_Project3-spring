@@ -19,8 +19,9 @@ public class BoardController {
 		return "/board/home";
 	}
 	@GetMapping(value="/board/list")
-	public String getList(int page, Model model){
-		List<BoardVO> boardList = boardService.getList(page);
+	public String getList(int currentPage, Model model){
+		List<BoardVO> boardList = boardService.getList(currentPage);
+		System.out.println("컨트롤러 list 메소드 현재페이지 :"+currentPage);
 		int listSize=boardService.getListSize();
 		int showListNum = 10;
 		int showPBtnNum = 5;
@@ -31,9 +32,10 @@ public class BoardController {
 				pageBtnNum += 1;
 			}
 		}
-		int startPage = Math.max(1, page - showPBtnNum / 2);
+		int startPage = Math.max(1, currentPage - showPBtnNum / 2);
 		int endPage = Math.min(pageBtnNum, startPage+showPBtnNum-1);
 		model.addAttribute("boardList", boardList);
+		System.out.println("리스트 : "+boardList);
 		model.addAttribute("pageBtnNum", pageBtnNum);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);

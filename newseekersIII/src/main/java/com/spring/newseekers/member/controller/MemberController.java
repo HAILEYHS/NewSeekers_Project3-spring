@@ -75,24 +75,6 @@ public class MemberController {
 	@PostMapping(value = "/member/login")
 	public String login(String user_id, String user_pw, HttpSession session, Model model) {
 		MemberVO member = memberService.selectMember(user_id);
-//		if (member != null) {
-//			String dbPassword = member.getUser_pw();
-//			if (dbPassword.equals(user_pw)) {
-//				// 비밀번호 일치
-//				session.setAttribute("user_id", user_id);
-//				session.setAttribute("name", member.getName());
-//				session.setAttribute("email", member.getEmail());
-//			} else {
-//				// 비밀번호 불일치
-//				session.invalidate();
-//				model.addAttribute("message", "WRONG_PASSWORD");
-//			}
-//		} else {
-//			// 아이디가 없음
-//			session.invalidate();
-//			model.addAttribute("message", "USER_NOT_FOUND");
-//		}
-//		return "redirect:/";
 		if (member != null) {
 			String dbPassword = member.getUser_pw();
 			// 데이터베이스에서 가져온 비밀번호와 클라이언트가 입력한 비밀번호를 비교
@@ -145,36 +127,14 @@ public class MemberController {
 	}
 
 	@PostMapping(value = "/member/modifyMember")
-//	public String updateMember(MemberVO member, HttpSession session, Model model) {
-//		System.out.println("modifyMember POST 메소드 들어옴");
-//		try {
-//			memberService.updateMember(member);
-//			model.addAttribute("message", "UPDATE_USER_INFO");
-//			model.addAttribute("member", member);
-//			session.setAttribute("email", member.getEmail());
-//			return "/member/login";
-//		} catch (Exception e) {
-//			model.addAttribute("message", e.getMessage());
-//			e.printStackTrace();
-//			return "/member/error";
-//		}
-//	}
-
 	public String updateMember(MemberVO member, HttpSession session, Model model) {
-	    System.out.println("modifyMember POST 메소드 들어옴");
-	    System.out.println("Id는 히든으로 보내줌"+ member);
 	    try {
 	        // 회원 정보 업데이트
 	        memberService.updateMember(member);
 
-//	        // 세션에 이메일 업데이트
-//	        session.setAttribute("user_id", member.getUser_id());
-//	        session.setAttribute("name", member.getName());
-//	        session.setAttribute("email", member.getEmail());
-
 	        model.addAttribute("message", "UPDATE_USER_INFO");
 	        model.addAttribute("member", member);
-	        System.out.println("수정되었는지 확인 : "+ member);
+	        session.invalidate();
 	        return "/member/login";
 	    } catch (Exception e) {
 	        model.addAttribute("message", e.getMessage());
@@ -182,38 +142,48 @@ public class MemberController {
 	        return "/member/error";
 	    }
 	}
-
-	@GetMapping(value = "/member/delete")
-	public String deleteMember(HttpSession session, Model model) {
-		String user_id = (String) session.getAttribute("user_id");
-		if (user_id != null && !user_id.equals("")) {
-			MemberVO member = memberService.selectMember(user_id);
-			model.addAttribute("member", member);
-			// 다시 한번 확인하기 위해 비밀번호 입력
-			model.addAttribute("message", "MEMBER_PW_RE");
-			return "/member/delete";
-		} else {
-			// user_id가 세션에 없을때(로그인하지 않았을 때)
-			model.addAttribute("message", "NOT_LOGIN_USER");
-			return "/member/login";
-		}
-	}
+//modifyMember에서 구현해서 필요없는 메소드
+//	@GetMapping(value = "/member/delete")
+//	public String deleteMember(HttpSession session, Model model) {
+//		String user_id = (String) session.getAttribute("user_id");
+//		if (user_id != null && !user_id.equals("")) {
+//			MemberVO member = memberService.selectMember(user_id);
+//			model.addAttribute("member", member);
+//			// 다시 한번 확인하기 위해 비밀번호 입력
+//			model.addAttribute("message", "MEMBER_PW_RE");
+//			return "/member/delete";
+//		} else {
+//			// user_id가 세션에 없을때(로그인하지 않았을 때)
+//			model.addAttribute("message", "NOT_LOGIN_USER");
+//			return "/member/login";
+//		}
+//	}
 
 	@PostMapping(value = "/member/delete")
 	public String deleteMember(String user_pw, HttpSession session, Model model) {
 		MemberVO member = new MemberVO();
 		member.setUser_id((String) session.getAttribute("user_id"));
 		String dbPassword = memberService.getPassword(member.getUser_id());
+		String encodedMessage;
 		if (user_pw != null && user_pw.equals(dbPassword)) {
 			member.setUser_pw(user_pw);
 			memberService.deleteMember(member);
-			model.addAttribute("message", "DELETE_USER_INFO");
-			session.invalidate(); // 회원 삭제 후 로구아웃 처리
-			return "/";
+			session.invalidate(); // 회원 삭제 후 로그아웃 처리
+			
+			try {
+				encodedMessage = URLEncoder.encode("회원 탈퇴되었습니다.", "UTF-8");
+				return "redirect:/?deleteMessage=" + encodedMessage;
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		} else {
-			model.addAttribute("message", "WRONG_PASSWORD");
-			return "/member/delete";
+			try {
+				encodedMessage = URLEncoder.encode("회원 탈퇴 중 오류가 발생하였습니다. 다시 시도해주세요.", "UTF-8");
+				return "redirect:/member/modifyMember?deleteMessage=" + encodedMessage;
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
 		}
-
+		return"redirect:/";
 	}
 }
