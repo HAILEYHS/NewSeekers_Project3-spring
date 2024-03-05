@@ -18,7 +18,7 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>회원가입</title>
 
-<script src="../js/members.js"></script>
+<script src="../js/login.js"></script>
 </head>
 
 <body class="text-center">
@@ -30,16 +30,19 @@
 			<div class="col-md-5">
 				<form action="/newseekers/member/login" method="post" name="reg_frm">
 					<h1 class="text-center fw-bold mb-7" id="logo">NewSeekers</h1>
-					<br>
-					<br>
-					<div class="form-group mb-3"> 
-						<input type="text" placeholder="아이디" name="user_id" required
+					<br> <br>
+					<div class="form-group mb-3">
+						<input type="text" placeholder="아이디" name="user_id"
 							class="form-control">
 					</div>
 					<div class="form-group mb-3">
-						<input type="password" placeholder="비밀번호" name="user_pw" required
+						<input type="password" placeholder="비밀번호" name="user_pw"
 							class="form-control">
 					</div>
+					<!-- 로그인 실패 시 오류 메시지를 표시하는 부분 -->
+					<c:if test="${not empty error}">
+						<div class="alert alert-danger" role="alert">${error}</div>
+					</c:if>
 					<div class="logIn d-flex flex-column text-center">
 						<button type="submit" class="btn btn-primary mb-2">로그인</button>
 						<input type="button" class="btn btn-primary mb-2" value="회원가입"

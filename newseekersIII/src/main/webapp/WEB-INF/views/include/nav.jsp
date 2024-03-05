@@ -5,7 +5,7 @@
 <div class="headbar fixed-top ">
 	<nav class="navbar navbar-expand-md">
 		<div id="logo">
-			<a href="../Index.jsp"><img src="../img/1logo.png" alt=""></a>
+			<a href="/newseekers/"><img src="./img/1logo.png" alt=""></a>
 		</div>
 
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"

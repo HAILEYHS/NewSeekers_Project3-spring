@@ -42,6 +42,11 @@ public class MemberService implements IMemberService{
 	public String getPassword(String user_id) {
 		return memberRepository.getPassword(user_id);
 	}
-	
+
+	@Override
+	public boolean selectId(String user_id) {
+	    int count = memberRepository.selectId(user_id);
+	    return count != 0;
+	}
 	
 }
