@@ -7,8 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객의견 목록</title>
 <!-- css -->
-<link rel="stylesheet" href="<c:url value='../css/header.footer.css'/>">
-<link rel="stylesheet" href="<c:url value='../css/board.css'/>">
+<link rel="stylesheet" href="../css/header.footer.css">
+<link rel="stylesheet" href="../css/board.css">
 <!-- bootstrap -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -25,7 +25,7 @@
 	<!-- header  -->
 	<jsp:include page="../include/nav.jsp" />
 
-	<c:set var="currentPage" value="${param.page}" />
+	<c:set var="page" value="${param.page}" />
 
 	<div class="board_wrap">
 		<div class="board_title">
@@ -50,8 +50,7 @@
 							<c:forEach begin="1" end="${dto.indent_num}">RE : </c:forEach>
 							<a href="content_view?community_num=${dto.community_num}">${dto.title}</a>
 						</div>
-						<div class="writer">${dto.user_Id}</div>
-
+						<div class="writer">${dto.user_id}</div>
 						<div class="date" id="board_list_date">${dto.date_created}</div>
 						<div class="count">${dto.hit}</div>
 					</div>
@@ -60,41 +59,41 @@
 
 			<div class="board_page">
 
-				<a href="/newseekers/board/list?currentPage=1" class="bt first"> << </a>
+				<a href="list?page=1" class="bt first"> << </a>
 
 				<c:choose>
 					<c:when test="${currentPage > 1}">
-						<a href="/newseekers/board/list?currentPage=${currentPage - 1}" class="bt  prev"><</a>
+						<a href="list?page=${currentPage - 1}" class="bt  prev"><</a>
 					</c:when>
 				</c:choose>
 
 				<c:forEach var="pageNumber" begin="${startPage}" end="${endPage}">
 					<c:set var="onClass"
-						value="${pageNumber eq currentPage ? 'on' : ''}" />
-					<a href="/newseekers/board/list?currentPage=${pageNumber}" class="num ${onClass}">${pageNumber}</a>
+						value="${pageNumber eq page ? 'on' : ''}" />
+					<a href="list?page=${pageNumber}" class="num ${onClass}">${pageNumber}</a>
 				</c:forEach>
 
 				<c:choose>
 					<c:when test="${currentPage < pageBtnNum}">
-						<a href="/newseekers/board/list?currentPage=${currentPage + 1}" class="bt next">></a>
+						<a href="list?page=${currentPage + 1}" class="bt next">></a>
 					</c:when>
 				</c:choose>
 
-				<a href="/newseekers/board/list?currentPage=${pageBtnNum}" class="bt last">>></a>
+				<a href="list?page=${pageBtnNum}" class="bt last">>></a>
 
 			</div>
 
 			<div class="bt_wrap">
-				<c:if test="${not empty sessionScope.ValidMem}">
+				<c:if test="${not empty sessionScope.user_id}">
 					<div class="bt_wrap">
-						<a href="../write_view.jsp" class="on">글쓰기</a>
+						<a href="write_view" class="on">글쓰기</a>
 					</div>
 				</c:if>
 
 
-				<c:if test="${empty sessionScope.ValidMem}">
+				<c:if test="${empty sessionScope.user_id}">
 					<div class="bt_wrap">
-						<a href="./login.do">글쓰기</a>
+						<a href="/newseekers/member/login">글쓰기</a>
 					</div>
 				</c:if>
 			</div>

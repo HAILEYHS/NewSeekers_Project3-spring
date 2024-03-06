@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>고객의견 작성</title>
 <!-- css -->
-<link rel="stylesheet" href="<c:url value='../css/header.footer.css'/>">
-<link rel="stylesheet" href="<c:url value='../css/board.css'/>">
+<link rel="stylesheet" href="../css/header.footer.css">
+<link rel="stylesheet" href="../css/board.css">
 	<!-- bootstrap -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -29,7 +29,8 @@
 			<p>사용자 의견의 답변을 빠르게 안내해드리겠습니다.</p>
 		</div>
 		<div class="board_write_wrap">
-			<form action="/newseekers/board/write" method="post" accept-charset="utf-8">
+			<form action="/newseekers/board/write" method="post"
+				accept-charset="utf-8">
 				<div class="board_write">
 					<div class="title">
 						<dl>
@@ -43,7 +44,8 @@
 						<dl>
 							<dt>글쓴이</dt>
 							<dd>
-							<input type="hidden" name="user_Id" value="user_Id">
+								<input type="hidden" name="user_id" value="${user_id}"/>
+								${user_id}
 							</dd>
 						</dl>
 
@@ -53,7 +55,7 @@
 					</div>
 				</div>
 				<div class="bt_wrap">
-					<input type="submit" value="글쓰기" /> <a href="list.do?page=1">취소</a>
+					<input type="submit" value="글쓰기" /> <a href="list?page=1">취소</a>
 				</div>
 			</form>
 		</div>

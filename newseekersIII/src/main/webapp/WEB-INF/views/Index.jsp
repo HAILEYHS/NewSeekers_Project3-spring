@@ -9,9 +9,9 @@
 <title>NewSeekers</title>
 <!-- -------------- css ---------------- -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<link rel="stylesheet" href="<c:url value='./css/index.css'/>">
-<link rel="stylesheet" href="<c:url value='./css/header.footer.css'/>">
-	<link rel="stylesheet" href="<c:url value='./css/animate.css'/>">
+<link rel="stylesheet" href="./css/index.css">
+<link rel="stylesheet" href="./css/header.footer.css">
+	<link rel="stylesheet" href="./css/animate.css">
 	<link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/di
 st/css/bootstrap.min.css"
@@ -29,7 +29,52 @@ st/css/bootstrap.min.css"
 
 <body>
     <!-- 상단바 -->
-	<jsp:include page="./include/nav.jsp" />
+	<div class="headbar fixed-top ">
+	<nav class="navbar navbar-expand-md">
+		<div id="logo">
+			<a href="/newseekers/"><img src="./img/1logo.png" alt=""></a>
+		</div>
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navMenu" aria-controls="navMenu"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navMenu">
+			<ul class="navbar-nav lg-2">
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="./seoul_main.jsp">
+						<p>서울시 안전지도</p>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="/newseekers/borough/borough_saftyInfo">
+						<p>우리동네 돋보기</p>
+				</a></li>
+				<li class="nav-item"><a class="nav-link" href="../preview.jsp">
+						<p>예측서비스</p>
+				</a></li>
+				<li class="nav-item"><a class="nav-link"
+					href="/newseekers/board/list?page=1">
+						<p>커뮤니티</p>
+				</a></li>
+				<!-- 세션 체크 -->
+				<c:choose>
+					<c:when test="${loggedIn}">
+						<!-- 사용자가 로그인한 경우 -->
+						<li class="nav-item"><a class="nav-link"id="myPageButton" data-bs-toggle="modal"
+							data-bs-target="#myPageModal"><p>마이페이지</p>
+						</a></li>
+					</c:when>
+					<c:otherwise>
+						<!-- 로그인하지 않은 경우 -->
+						<li class="nav-item"><a class="nav-link" href="/newseekers/member/login"><p>로그인</p>
+						</a></li>
+					</c:otherwise>
+				</c:choose>
+
+			</ul>
+		</div>
+	</nav>
+</div>
    
     <!-- 캐러셀 -->
     <div id="carousel1" class="carousel carousel slide"
@@ -122,7 +167,7 @@ st/css/bootstrap.min.css"
                                 		<tr>
                                 			<td>${dto.community_num}</td>
                                 			<td>${dto.title}</td>
-                                			<td>${dto.user_Id}</td>
+                                			<td>${dto.user_id}</td>
                                 			<td>${dto.date_created}</td>
                                 		</tr>
                                 	</c:forEach>
@@ -159,7 +204,7 @@ st/css/bootstrap.min.css"
                             <p>맨발로 걷기 좋은 공원.</p>
                         </div>
                               <button type="button" class="btn">
-							<a href="./gu_page.jsp?region=강남구">[ 강남구 ] 청담근린공원
+							<a href="/newseekers/borough/borough_saftyInfo?region=강남구">[ 강남구 ] 청담근린공원
                             </a>
 						</button>
                     </div>
@@ -173,7 +218,7 @@ st/css/bootstrap.min.css"
 							</p>
                         </div>
                             <button type="button" class="btn">
-							<a href="./gu_page.jsp?region=영등포구">[ 영등포구 ] 영등포 공원
+							<a href="/newseekers/borough/borough_saftyInfo?region=영등포구">[ 영등포구 ] 영등포 공원
                             </a>
 						</button>
                     </div>
@@ -186,7 +231,7 @@ st/css/bootstrap.min.css"
                             <p>서울시에서는 서울의 우수한 경관을<br>알리자는 취지로<br>선정한 우수 경관 조망 명소 50개소 중의 한 곳.</p>
                         </div>
 							<button type="button" class="btn">
-							<a href="./gu_page.jsp?region=송파구">[ 송파구 ] 석촌 호수 공원
+							<a href="/newseekers/borough/borough_saftyInfo?region=송파구">[ 송파구 ] 석촌 호수 공원
                             </a>
 						</button>
                     </div>
@@ -203,7 +248,7 @@ st/css/bootstrap.min.css"
                             	한강과 맞닿아 있어<br>다양한 문화여가공간을 제공</p>
                         </div>
                         <button type="button" class="btn">
-							<a href="./gu_page.jsp?region=성동구">[ 성동구 ] 서울 숲 공원
+							<a href="/newseekers/borough/borough_saftyInfo?region=성동구">[ 성동구 ] 서울 숲 공원
                             </a>
 						</button>
                     </div>
@@ -217,7 +262,7 @@ st/css/bootstrap.min.css"
                             	주민들의 휴식과 운동장소로 이용</p>
                         </div>
                         <button type="button" class="btn">
-							<a href="./gu_page.jsp?region=강북구">[ 강북구 ] 오동 공원
+							<a href="/newseekers/borough/borough_saftyInfo?region=강북구">[ 강북구 ] 오동 공원
                             </a>
 						</button>
                     </div>
@@ -284,8 +329,52 @@ st/css/bootstrap.min.css"
     </div>
 
 
+
+<!-- 모달 창 부분 -->
+<div class="modal fade" id="myPageModal" tabindex="10"
+	aria-labelledby="ModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!-- 모달 제목 -->
+			<button type="button" class="btn-close" data-bs-dismiss="modal"
+				aria-label="Close"></button>
+			<DIV class="modal-header">
+				<h5 class="modal-title" id="modalLable">
+					<c:out value="${sessionScope.name}" />님 반갑습니다.
+				</h5>
+			</DIV>
+			<!-- 모달 내용 부분 -->
+			<div class="modal-body">
+				<img src="./img/profile.png"  id="profileImage" alt="프로필 이미지">
+			</div>
+			<div class="modal-footer">
+				<!-- 로그아웃 및 수정 버튼 -->
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+					onclick="javascript:window.location='/newseekers/member/logout'">로그아웃</button>
+				<button type="button" class="btn btn-success"
+    onclick="javascript:window.location='/newseekers/member/modifyMember?id=${sessionScope.user_id}'">수정</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
 <!-- footer -->
-<jsp:include page="./include/footer.jsp" />
+<footer id="footer_container">
+	<div id="footer_box">
+		<div id="footer_address">
+			<li>서울시 마포구 신촌로 176 중앙빌딩</li>
+			<li>대표전화 02-123-1234</li>
+			<li>대표메일 abc@abc.com</li>
+		</div>
+		<div id="footer_info">
+			<div>개인정보처리방침</div>
+			<div>이메일 무단수집 거부</div>
+			<div>이용약관</div>
+		</div>
+	</div>
+</footer>
+
 
 <!-- -------------- script ---------------- -->
     <script
@@ -297,7 +386,7 @@ st/css/bootstrap.min.css"
 		integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
 		crossorigin="anonymous"></script>
         <SCRIPT type="./js/index.js"></SCRIPT>
-    <script src="<c:url value='./js/wow.min.js'/>"></script>
+    <script src="./js/wow.min.js"></script>
 	<script>
 		new WOW().init();
 	</script>

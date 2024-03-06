@@ -11,7 +11,7 @@ public interface IBoardRepository {
 	List<BoardVO> indexList();
 	void write(BoardVO board);
 	void upHit(String community_num);
-	BoardVO contentView(String community_cum);
+	BoardVO contentView(String community_num);
 	BoardVO modifyView(String community_num);
 	int modify(BoardVO board);
 	BoardVO getPostById(String community_num);

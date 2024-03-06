@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.spring.newseekers.board.model.BoardVO;
 import com.spring.newseekers.board.repository.IBoardRepository;
+import com.spring.newseekers.member.model.MemberVO;
 
 @Service
 public class BoardService implements IBoardService {
@@ -15,13 +16,13 @@ public class BoardService implements IBoardService {
 	IBoardRepository boardRepository;
 
 	@Override
-	public List<BoardVO> getList(int currentPage) {
+	public List<BoardVO> getList(int page) {
 	    int showListNum = 10; // 한 페이지에 보여줄 글의 개수
-	    int startRow = (currentPage - 1) * showListNum + 1; // 페이지의 시작 행 번호
+	    int startRow = (page - 1) * showListNum + 1; // 페이지의 시작 행 번호
 	    int endRow = startRow + showListNum - 1; // 페이지의 끝 행 번호
-	    System.out.println("startRow : "+startRow);
-	    System.out.println("endRow :"+endRow);
-	    return boardRepository.getList(11, 20); // boardRepository를 통해 글 목록을 가져와서 반환
+//	    System.out.println("startRow : "+startRow);
+//	    System.out.println("endRow :"+endRow);
+	    return boardRepository.getList(startRow, endRow); // boardRepository를 통해 글 목록을 가져와서 반환
 	}
 
 
@@ -41,10 +42,10 @@ public class BoardService implements IBoardService {
 	}
 
 	@Override
-	public BoardVO contentView(String community_cum) {
-		return boardRepository.contentView(community_cum);
+	public BoardVO contentView(String community_num) {
+		return boardRepository.contentView(community_num);
 	}
-
+	
 	@Override
 	public int modify(BoardVO board) {
 		return boardRepository.modify(board);
