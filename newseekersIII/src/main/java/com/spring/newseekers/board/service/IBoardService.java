@@ -5,7 +5,7 @@ import java.util.List;
 import com.spring.newseekers.board.model.BoardVO;
 
 public interface IBoardService {
-	List<BoardVO> getList(int currentPage);
+	List<BoardVO> getList(int page);
 	List<BoardVO> indexList();
 	void write(BoardVO board);
 	void upHit(String community_num);

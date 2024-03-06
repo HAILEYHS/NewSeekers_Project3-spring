@@ -37,24 +37,6 @@ public class MemberController {
 		return "/member/login";
 	}
 
-//	@PostMapping(value="/member/confirmId")
-//	public Map<String, Boolean> confirmId(@RequestBody String user_id) {
-//	    Map<String, Boolean> response = new HashMap<String, Boolean>();
-//	    boolean result = false;
-//	    System.out.println("user_id : " + user_id);
-//	    if(user_id.trim().isEmpty()) {
-//	        logger.info("id : " + user_id);
-//	        result = false;
-//	    } else {
-//	        if (memberService.selectId(user_id)) {
-//	            result = false;
-//	        } else {
-//	            result = true;
-//	        }
-//	    }
-//	    response.put("result", result);
-//	    return response;
-//	}
 	// 회원가입시 중복 ID인지 검사하는 메소드
 	@PostMapping(value = "/member/confirmId")
 	// @ResponseBody 어노테이션 꼭 붙여야 JSON형식으로 받을 수 있음.
@@ -142,22 +124,6 @@ public class MemberController {
 	        return "/member/error";
 	    }
 	}
-//modifyMember에서 구현해서 필요없는 메소드
-//	@GetMapping(value = "/member/delete")
-//	public String deleteMember(HttpSession session, Model model) {
-//		String user_id = (String) session.getAttribute("user_id");
-//		if (user_id != null && !user_id.equals("")) {
-//			MemberVO member = memberService.selectMember(user_id);
-//			model.addAttribute("member", member);
-//			// 다시 한번 확인하기 위해 비밀번호 입력
-//			model.addAttribute("message", "MEMBER_PW_RE");
-//			return "/member/delete";
-//		} else {
-//			// user_id가 세션에 없을때(로그인하지 않았을 때)
-//			model.addAttribute("message", "NOT_LOGIN_USER");
-//			return "/member/login";
-//		}
-//	}
 
 	@PostMapping(value = "/member/delete")
 	public String deleteMember(String user_pw, HttpSession session, Model model) {

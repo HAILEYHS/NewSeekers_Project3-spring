@@ -3,13 +3,13 @@ package com.spring.newseekers.board.model;
 public class BoardVO {
 	@Override
 	public String toString() {
-		return "BoardVO [community_num=" + community_num + ", title=" + title + ", user_Id=" + user_Id + ", content="
+		return "BoardVO [community_num=" + community_num + ", title=" + title + ", user_id=" + user_id + ", content="
 				+ content + ", date_created=" + date_created + ", hit=" + hit + ", group_num=" + group_num
 				+ ", step_num=" + step_num + ", indent_num=" + indent_num + "]";
 	}
 	private int community_num;
 	private String title;
-	private String user_Id;
+	private String user_id;
 	private String content;
 	private String date_created;
 	private int hit;
@@ -29,11 +29,11 @@ public class BoardVO {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getUser_Id() {
-		return user_Id;
+	public String getUser_id() {
+		return user_id;
 	}
-	public void setUser_Id(String user_Id) {
-		this.user_Id = user_Id;
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
 	}
 	public String getContent() {
 		return content;

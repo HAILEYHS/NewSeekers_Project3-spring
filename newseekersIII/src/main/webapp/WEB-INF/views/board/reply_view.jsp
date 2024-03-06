@@ -38,7 +38,7 @@
 					</dl>
 					<dl>
 						<dt>글쓴이</dt>
-						<dd>${content.user_Id}</dd>
+						<dd>${content.user_id}</dd>
 					</dl>
 					<dl>
 						<dt>작성일</dt>
@@ -56,7 +56,7 @@
 					</dl>
 				</div>
 			</div>
-			<form action="/newseekers/board/reply" method="post">
+			<form action="reply" method="post">
 				<input type="hidden" name="community_num" value="${content.community_num}"> <input
 					type="hidden" name="group_num" value="${content.group_num}"> <input
 					type="hidden" name="step_num" value="${content.step_num}"> <input
@@ -75,9 +75,9 @@
 						<dl>
 							<dt>글쓴이</dt>
 							<dd>
-							<!-- session 하면 user_id 바꿔주기 -->
-								<input type="hidden" name="user_Id" value="user_id">
-	
+							<!-- session에 있는 user_id -->
+								<input type="hidden" name="user_id" value="${user_id}">
+								${user_id}
 							</dd>
 						</dl>
 					</div>

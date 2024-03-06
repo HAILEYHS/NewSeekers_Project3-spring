@@ -9,8 +9,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>커뮤니티</title>
 <!-- css -->
-<link rel="stylesheet" href="<c:url value='../css/header.footer.css'/>">
-<link rel="stylesheet" href="<c:url value='../css/board.css'/>">
+<link rel="stylesheet" href="../css/header.footer.css">
+<link rel="stylesheet" href="../css/board.css">
 	<!-- bootstrap -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
@@ -30,9 +30,9 @@
 			<p>의견의 수정사항을 입력해주세요.</p>
 		</div>
 		<div class="board_write_wrap">
-			<form action="/newseekers//board/modify" method="post">
+			<form action="modify" method="post">
 				<input type="hidden" name="community_num" value="${content.community_num}"> <input
-					type="hidden" name="user_Id" value="${content.user_Id}"> <input
+					type="hidden" name="user_id" value="${content.user_id}"> <input
 					type="hidden" name="date_created" value="${content.date_created}"> <input
 					type="hidden" name="hit" value="${content.hit}">
 				<div class="board_write">
@@ -47,7 +47,7 @@
 					<div class="info">
 						<dl>
 							<dt>글쓴이</dt>
-							<dd>${content.user_Id}</dd>
+							<dd>${content.user_id}</dd>
 						</dl>
 						<dl>
 							<dt>작성일</dt>
@@ -61,7 +61,7 @@
 					</div>
 				</div>
 				<div class="bt_wrap">
-					<input type="submit" value="수정"><a href="list.do?page=1">취소</a>
+					<input type="submit" value="수정"><a href="list?page=1">취소</a>
 				</div>
 			</form>
 		</div>

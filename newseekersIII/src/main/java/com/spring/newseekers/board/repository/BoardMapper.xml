@@ -7,7 +7,7 @@
 		type="com.spring.newseekers.board.model.BoardVO">
 		<result property="community_num" column="community_num" />
 		<result property="title" column="title" />
-		<result property="user_Id" column="user_Id" />
+		<result property="user_id" column="user_id" />
 		<result property="content" column="content" />
 		<result property="date_created" column="date_created" />
 		<result property="hit" column="hit" />
@@ -17,16 +17,21 @@
 	</resultMap>
 
 	<select id="getList" parameterType="int" resultMap="getBoard">
-		SELECT community_num, user_Id, title, content,
-		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created,
+		SELECT
+		community_num, user_id, title, content,
+		TO_CHAR(date_created,
+		'YYYY-MM-DD') AS date_created,
 		hit, group_num, step_num, indent_num
 		FROM (
-		SELECT community_num, user_Id, title, content, date_created, hit, group_num,
+		SELECT community_num, user_id, title, content, date_created,
+		hit, group_num,
 		step_num, indent_num ,
-		ROW_NUMBER() OVER (ORDER BY group_num DESC, step_num ASC) AS rnum
+		ROW_NUMBER() OVER (ORDER BY
+		group_num DESC, step_num ASC) AS rnum
 		FROM COMMUNITY
 		)
-		WHERE rnum BETWEEN #{startRow} AND #{endRow}
+		WHERE rnum BETWEEN
+		#{startRow} AND #{endRow}
 	</select>
 	<select id="getListSize" resultType="int">
 		select count(*) from
@@ -34,7 +39,7 @@
 	</select>
 	<select id="indexList" resultMap="getBoard">
 	    <![CDATA[
-		SELECT community_num, user_Id, title, 
+		SELECT community_num, user_id, title, 
 		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created  
 		FROM ( SELECT * FROM COMMUNITY ORDER BY community_num DESC) 
 		WHERE ROWNUM<=7
@@ -46,15 +51,19 @@
 	</update>
 	<select id="contentView" parameterType="string"
 		resultMap="getBoard">
-		select community_num, user_Id, title, content,
+		select community_num, user_id, title, content,
 		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created,
-		hit from COMMUNITY where community_num=
+		hit, group_num, step_num, indent_num from COMMUNITY
+		where community_num=
 		#{community_num}
 	</select>
+
+
 	<select id="modifyView" parameterType="string"
 		resultMap="getBoard">
-		select community_num, user_Id, title, content,
-		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created 
+		select community_num, user_id, title, content,
+		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created,
+		hit, group_num, step_num, indent_num 
 		from COMMUNITY where community_num=
 		#{community_num}
 	</select>
@@ -70,28 +79,30 @@
 	<insert id="write"
 		parameterType="com.spring.newseekers.board.model.BoardVO">
 		insert into
-		COMMUNITY(community_num, user_Id, title,
+		COMMUNITY(community_num, user_id, title,
 		content, hit, group_num, step_num, indent_num)
-		values(COMMUNITY_seq.nextval,#{user_Id},#{title},#{content},0,COMMUNITY_seq.currval,0,0)
+		values(COMMUNITY_seq.nextval,#{user_id},#{title},#{content},0,COMMUNITY_seq.currval,0,0)
 	</insert>
 	<select id="reply_view" parameterType="string"
 		resultMap="getBoard">
-		select community_num, user_Id, title, content,
-		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created, 
-		hit from COMMUNITY where community_num=
+		select community_num, user_id, title, content,
+		TO_CHAR(date_created, 'YYYY-MM-DD') AS date_created,
+		hit, group_num, step_num, indent_num from COMMUNITY where community_num=
 		#{community_num}
 	</select>
 	<insert id="reply"
 		parameterType="com.spring.newseekers.board.model.BoardVO">
-		insert into COMMUNITY(community_num, user_Id, title,
+		insert into COMMUNITY(community_num, user_id, title,
 		content, group_num, step_num, indent_num)
-		values (COMMUNITY_seq.nextval,#{user_Id},#{title},#{content},#{group_num},
+		values
+		(COMMUNITY_seq.nextval,#{user_id},#{title},#{content},#{group_num},
 		#{step_num}+1, #{indent_num}+1)
 	</insert>
 	<update id="replyShape"
 		parameterType="com.spring.newseekers.board.model.BoardVO">
 		update COMMUNITY set
-		step_num = step_num+1 where group_num = #{group_num} and step_num >
+		step_num = step_num+1 where
+		group_num = #{group_num} and step_num >
 		#{step_num}
 	</update>
 </mapper>

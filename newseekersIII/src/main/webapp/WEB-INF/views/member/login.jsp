@@ -12,8 +12,8 @@
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
 <!-- css -->
-<link rel="stylesheet" href="<c:url value='../css/login.css'/>">
-<link rel="stylesheet" href="<c:url value='../css/header.footer.css'/>">
+<link rel="stylesheet" href="../css/login.css">
+<link rel="stylesheet" href="../css/header.footer.css">
 
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>회원가입</title>
