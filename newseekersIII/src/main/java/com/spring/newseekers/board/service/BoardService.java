@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.spring.newseekers.board.model.BoardVO;
 import com.spring.newseekers.board.repository.IBoardRepository;
-import com.spring.newseekers.member.model.MemberVO;
 
 @Service
 public class BoardService implements IBoardService {

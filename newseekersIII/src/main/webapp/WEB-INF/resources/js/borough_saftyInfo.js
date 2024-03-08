@@ -1,13 +1,10 @@
-var local = "강남구";
-console.log(local)
-
-
 
 var guName;
-var guNameValue;
+var guNameValue= "강남구";
+console.log(guNameValue)
 var arrestdata;
 var safetyChart;
-
+var year ="y2023";
 window.onload = function () {
 
 
@@ -15,12 +12,7 @@ function fetchDataAndProcess(url, callback) {
    guName = document.getElementById("selectbox");
    guNameValue = guName.options[guName.selectedIndex].value;
 
-  fetch(url+'?guNameValue=' + guNameValue , {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
+  fetch(url+'?guNameValue=' + guNameValue)
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok' + response.statusText);
@@ -37,30 +29,37 @@ function fetchDataAndProcess(url, callback) {
 }
 
 
-// 예제로 fetchDataAndProcess 함수를 사용하는 방법
-fetchDataAndProcess('./guPage_chart.do', function(data) {
+//fetchDataAndProcess 함수 사용
+fetchDataAndProcess('getArRate', function(data) {
   console.log(data);
-  const ar_rateDatas = data.map(item => item.total_ar_rate);
+  const ar_rateDatas = data.map(item => item.ar_rate);
   ar_rateChart(ar_rateDatas);
 });
 
-fetchDataAndProcess('./guPage_secuGrade.do', function(data) {
+fetchDataAndProcess('getPopulation', function(data) {
 	console.log(data);
-  document.getElementById("gu_rank").innerHTML = data.secugrade;
-  document.getElementById("gu_people").innerHTML = data.population.toString()
-  .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+	console.log(data.gu_secugrade);
+	console.log(data.population);
+
+  if (data.gu_secugrade !== undefined) {
+    document.getElementById("gu_rank").innerHTML = data.gu_secugrade;
+    document.getElementById("gu_people").innerHTML = data.population.toString()
+    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+} else {
+	console.log("데이터 없음");
+}
 });
 
-fetchDataAndProcess('./guPage_secufacil.do', function(data) {
-	  console.log(data);
+fetchDataAndProcess('getSecufacil', function(data) {
+	console.log(data);
     addData(securityChart1, data.avg_cctv, data.cctv, guNameValue);
     addData(securityChart2, data.avg_lights, data.lights, guNameValue);
-    addData(securityChart3, data.avg_policestation, data.policestation, guNameValue);
+    addData(securityChart3, data.avg_policestation, data.policeStation, guNameValue);
 });
 
 
- fetch('./guPage_perceivedSafety.do?year=y2023&guNameValue='
- + guNameValue, {
+ fetch('getPerceivedSafety?year=' + year + "&guNameValue=" + guNameValue, {
  method: 'Get',
  headers: {
  'Content-Type': 'application/json'
@@ -98,28 +97,28 @@ fetchDataAndProcess('./guPage_secufacil.do', function(data) {
     guName = document.getElementById("selectbox");
     guNameValue = guName.options[guName.selectedIndex].value;
 
-    fetchDataAndProcess('./guPage_secuGrade.do', function(data) {
+    fetchDataAndProcess('getPopulation', function(data) {
     	console.log(data);
-      document.getElementById("gu_rank").innerHTML = data.secugrade;
-      document.getElementById("gu_people").innerHTML = data.population.toString()
+ 		document.getElementById("gu_rank").innerHTML = data.gu_secugrade;
+  		document.getElementById("gu_people").innerHTML = data.population.toString()
       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     });
     
-    fetchDataAndProcess('./guPage_secufacil.do', function(data) {
+    fetchDataAndProcess('getSecufacil', function(data) {
     	  console.log(data);
         addData(securityChart1, data.avg_cctv, data.cctv, guNameValue);
         addData(securityChart2, data.avg_lights, data.lights, guNameValue);
-        addData(securityChart3, data.avg_policestation, data.policestation, guNameValue);
+        addData(securityChart3, data.avg_policestation, data.policeStation, guNameValue);
         
     });
-    fetchDataAndProcess('./guPage_chart.do', function(data) {
+    fetchDataAndProcess('getArRate', function(data) {
   	  console.log(data);
   	 safetyChart.destroy();
-   	  const ar_rateDatas = data.map(item => item.total_ar_rate);
+   	  const ar_rateDatas = data.map(item => item.ar_rate);
     	  ar_rateChart(ar_rateDatas);
     });
 
-    fetch('./guPage_perceivedSafety.do?year=y2023&guNameValue=' + guNameValue, {
+    fetch('getPerceivedSafety?year=' + year + "&guNameValue=" + guNameValue, {
       method: 'Get',
       headers: {
         'Content-Type': 'application/json'
@@ -146,7 +145,7 @@ fetchDataAndProcess('./guPage_secufacil.do', function(data) {
 
 
   var security_CCTV = {
-    labels: ['평균', local],
+    labels: ['평균', guNameValue],
     // a 강남구의 범례
     datasets: [{
       label: [
@@ -160,7 +159,7 @@ fetchDataAndProcess('./guPage_secufacil.do', function(data) {
 
 
   var security_light = {
-    labels: ['평균', local],
+    labels: ['평균', guNameValue],
     // a 강남구의 범례
     datasets: [{
       label: [
@@ -173,7 +172,7 @@ fetchDataAndProcess('./guPage_secufacil.do', function(data) {
   };
 
   var security_police = {
-    labels: ['평균', local],
+    labels: ['평균', guNameValue],
     // a 강남구의 범례
     datasets: [{
       label: [
@@ -270,12 +269,12 @@ fetchDataAndProcess('./guPage_secufacil.do', function(data) {
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
       // 클릭된 버튼의 값을 읽어옵니다.
-      var buttonValue = button.textContent;
+      var year = button.id;
       // 읽어온 값을 콘솔에 출력합니다. 실제로 사용하는 곳에서는 다른 작업을 수행할 수 있습니다.
       console.log("Button Value: " + buttonValue);
       guName = document.getElementById("selectbox");
       guNameValue = guName.options[guName.selectedIndex].value;
-      fetch('./guPage_perceivedSafety.do?year=y' + buttonValue + "&guNameValue=" + guNameValue, {
+      fetch('getPerceivedSafety?year=' + year + "&guNameValue=" + guNameValue, {
         method: 'Get',
         headers: {
           'Content-Type': 'application/json'
@@ -291,23 +290,23 @@ fetchDataAndProcess('./guPage_secufacil.do', function(data) {
         .then(data => {
           console.log(data);
           // 클릭된 버튼의 ID 가져오기
-          var buttonID = button.id;
-          console.log("buttonID : " + buttonID);
+          var year = button.id;
+          console.log("year : " + year);
           // ID에 따라 #lower의 내용 변경
-          switch (buttonID) {
-            case "bt2019":
+          switch (year) {
+            case "y2019":
               document.getElementById("chart_resultMent3").innerHTML = "<p>2019 년도 " + data.rank + "위</p>";
               break;
-            case "bt2020":
+            case "y2020":
               document.getElementById("chart_resultMent3").innerHTML = "<p>2020 년도 " + data.rank + "위</p>";
               break;
-            case "bt2021":
+            case "y2021":
               document.getElementById("chart_resultMent3").innerHTML = "<p>2021 년도" + data.rank + "위</p>";
               break;
-            case "bt2022":
+            case "y2022":
               document.getElementById("chart_resultMent3").innerHTML = "<p>2022 년도 " + data.rank + "위</p>";
               break;
-            case "bt2023":
+            case "y2023":
               document.getElementById("chart_resultMent3").innerHTML = "<p>2023 년도 " + data.rank + "위</p>";
               break;
             default:

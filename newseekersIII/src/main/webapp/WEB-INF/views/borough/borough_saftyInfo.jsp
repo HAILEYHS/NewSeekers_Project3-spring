@@ -143,11 +143,11 @@
 			</div>
 			<div id="chart_result" class="col-md-12 col-lg-4">
 				<div class="btn-group">
-					<button type="button" class="btn btn-secondary" id="bt2019">2019</button>
-					<button type="button" class="btn btn-secondary" id="bt2020">2020</button>
-					<button type="button" class="btn btn-secondary" id="bt2021">2021</button>
-					<button type="button" class="btn btn-secondary" id="bt2022">2022</button>
-					<button type="button" class="btn btn-secondary" id="bt2023">2023</button>
+					<button type="button" class="btn btn-secondary" id="y2019">2019</button>
+					<button type="button" class="btn btn-secondary" id="y2020">2020</button>
+					<button type="button" class="btn btn-secondary" id="y2021">2021</button>
+					<button type="button" class="btn btn-secondary" id="y2022">2022</button>
+					<button type="button" class="btn btn-secondary" id="y2023">2023</button>
 				</div>
 				<div id="chart_resultMent">
 					<div id="chart_resultMent1" class="result_Ment">
@@ -288,8 +288,8 @@
 		integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
 		crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-	<script src="./js/gu_page.js"></script>
-	<script src="./js/map_ym.js"></script>
+	<script src="../js/borough_saftyInfo.js"></script>
+	<script src="../js/map_ym.js"></script>
 
 	<script src="http://code.jquery.com/jquery-latest.js"></script>
 </body>
