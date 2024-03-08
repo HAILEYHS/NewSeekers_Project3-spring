@@ -27,4 +27,6 @@
 
 <mybatis-spring:scan base-package="com.spring.newseekers.board.repository"/>
 <mybatis-spring:scan base-package="com.spring.newseekers.member.repository"/>
+<mybatis-spring:scan base-package="com.spring.newseekers.borough.repository"/>
+
 </beans>

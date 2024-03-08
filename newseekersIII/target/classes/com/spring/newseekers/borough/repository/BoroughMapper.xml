@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper
+	namespace="com.spring.newseekers.borough.repository.IBoroughRepository">
+	<resultMap id="arRate"
+		type="com.spring.newseekers.borough.model.ArRateVO">
+		<result property="year" column="year" />
+		<result property="ar_rate" column="TOTAL_AR_RATE" />
+	</resultMap>
+	<resultMap id="population"
+		type="com.spring.newseekers.borough.model.PopulationVO">
+		<result property="guName" column="guname" />
+		<result property="population" column="population" />
+		<result property="gu_secugrade" column="y2022" />
+	</resultMap>
+	<resultMap id="secufacil"
+		type="com.spring.newseekers.borough.model.SecufacilVO">
+		<result property="guName" column="guname" />
+		<result property="year" column="y2022" />
+		<result property="local" column="gu_name.local" />
+		<result property="cctv" column="cctv" />
+		<result property="lights" column="lights" />
+		<result property="policeStation" column="policeStation" />
+		<result property="avg_cctv" column="avg_cctv" />
+		<result property="avg_lights" column="avg_lights" />
+		<result property="avg_policestation" column="avg_policestation" />
+	</resultMap>
+	<resultMap id="perceivedSafty"
+		type="com.spring.newseekers.borough.model.PerceivedSafetyVO">
+		<result property="year" column="year" />
+		<result property="local" column="local" />
+		<result property="guName" column="guname" />
+		<result property="rank" column="rank" />
+	</resultMap>
+
+	<select id="getArRate" parameterType="string" resultMap="arRate">
+		SELECT
+		TOTAL_AR_RATE, year
+		FROM gu_crime WHERE gu_crime.year IN (2004, 2007,
+		2010, 2013, 2016, 2019,
+		2022)
+		AND gu_crime.local IN ( SELECT
+		gu_name.local FROM gu_name WHERE guname=
+		#{guNameValue})
+	</select>
+
+	<select id="getPopulation" parameterType="string"
+		resultMap="population">
+		SELECT gu_name.guname, gu_env.population, gu_secugrade.y2022
+		FROM gu_name
+		JOIN gu_env ON gu_name.local = gu_env.local
+		JOIN
+		gu_secugrade ON gu_name.local = gu_secugrade.local
+		WHERE gu_name.guname
+		= #{guNameValue} and gu_env.year='2022'
+	</select>
+
+	<select id="getSecufacil" parameterType="string"
+		resultMap="secufacil">
+		SELECT trunc(AVG(cctv)) as avg_cctv,
+		trunc(AVG(policestation))as avg_policestation,
+		trunc(AVG(lights))as
+		avg_lights,
+		MAX(CASE WHEN guname = #{guNameValue} THEN cctv END)as
+		cctv,
+		MAX(CASE WHEN guname = #{guNameValue} THEN policestation END) as
+		policestation,
+		MAX(CASE WHEN guname = #{guNameValue} THEN lights END)
+		as lights
+		FROM gu_secufacil
+		JOIN gu_name ON gu_secufacil.local =
+		gu_name.local WHERE year = 2022
+	</select>
+
+	<select id="getPerceivedSafetyOnload" parameterType="String" resultMap="perceivedSafty">
+		select rank
+		from (
+		select local, y2023,
+		rank() over (order by y2023 desc) as rank
+		from perceivedsafety )
+		where local in (
+		select
+		local from gu_name where guname = #{guNameValue});
+	</select>
+
+	<select id="getPerceivedSafety" parameterType="map" resultMap="perceivedSafty">
+		select rank
+		from (
+		select local, #{year}, 
+		rank() over (order by #{year} desc) as rank
+		from perceivedsafety )
+		where local in (
+		select
+		local from gu_name where guname = #{guNameValue});
+	</select>
+</mapper>
