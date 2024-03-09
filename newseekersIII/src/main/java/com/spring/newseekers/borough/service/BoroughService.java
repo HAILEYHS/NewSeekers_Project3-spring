@@ -35,14 +35,8 @@ public class BoroughService implements IBoroughService {
 	}
 	
 	@Override
-	public PerceivedSafetyVO getPerceivedSafetyOnload(String guNameValue) {
-		System.out.println("서비스 getPerceivedSafety메소드 들어옴. \r\n guNameValue : "+ guNameValue);
-		return boroughRepository.getPerceivedSafetyOnload(guNameValue);
-	}
-	
-	@Override
-	public PerceivedSafetyVO getPerceivedSafety(Map<String, Object> mapperparam) {
-		System.out.println("서비스 getPerceivedSafety메소드 들어옴. \r\n guNameValue : "+ mapperparam);
-		return boroughRepository.getPerceivedSafety(mapperparam);
+	public String getPerceivedSafety(String year, String guNameValue) {
+		System.out.println("서비스 getPerceivedSafety메소드 들어옴. \r\n"+"  year: "+year+"    guNameValue : "+ guNameValue);
+		return boroughRepository.getPerceivedSafety(year, guNameValue);
 	}
 }

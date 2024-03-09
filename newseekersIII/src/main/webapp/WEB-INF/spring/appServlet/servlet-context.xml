@@ -33,6 +33,8 @@
 		mapping="/js/**" />
 	<mvc:resources location="/WEB-INF/resources/css/"
 		mapping="/css/**" />
+	<mvc:resources location="/WEB-INF/resources/json/"
+		mapping="/json/**" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->

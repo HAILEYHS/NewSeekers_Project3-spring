@@ -1,7 +1,6 @@
 
 var guName;
 var guNameValue= "강남구";
-console.log(guNameValue)
 var arrestdata;
 var safetyChart;
 var year ="y2023";
@@ -31,17 +30,11 @@ function fetchDataAndProcess(url, callback) {
 
 //fetchDataAndProcess 함수 사용
 fetchDataAndProcess('getArRate', function(data) {
-  console.log(data);
   const ar_rateDatas = data.map(item => item.ar_rate);
   ar_rateChart(ar_rateDatas);
 });
 
 fetchDataAndProcess('getPopulation', function(data) {
-	console.log(data);
-
-	console.log(data.gu_secugrade);
-	console.log(data.population);
-
   if (data.gu_secugrade !== undefined) {
     document.getElementById("gu_rank").innerHTML = data.gu_secugrade;
     document.getElementById("gu_people").innerHTML = data.population.toString()
@@ -52,7 +45,6 @@ fetchDataAndProcess('getPopulation', function(data) {
 });
 
 fetchDataAndProcess('getSecufacil', function(data) {
-	console.log(data);
     addData(securityChart1, data.avg_cctv, data.cctv, guNameValue);
     addData(securityChart2, data.avg_lights, data.lights, guNameValue);
     addData(securityChart3, data.avg_policestation, data.policeStation, guNameValue);
@@ -73,9 +65,8 @@ fetchDataAndProcess('getSecufacil', function(data) {
  return response.json();
  })
  .then(data => {
- console.log(data);
  document.getElementById("chart_resultMent3").innerHTML = "<p>2023 년도 " +
- data.rank + "위</p>";
+ data + "위</p>";
 
 
  })
@@ -84,7 +75,6 @@ fetchDataAndProcess('getSecufacil', function(data) {
  });
 
   const addData = (chart, data1, data2, guNameValue) => {
-//     removeData(chart);
     chart.data.datasets[0].data = [data1, data2];
     chart.data.labels = ['평균', guNameValue]
     chart.update();
@@ -96,23 +86,22 @@ fetchDataAndProcess('getSecufacil', function(data) {
   selectregion.addEventListener('input', function () {
     guName = document.getElementById("selectbox");
     guNameValue = guName.options[guName.selectedIndex].value;
+    document.getElementById("gu_name").innerHTML = guNameValue;
+
 
     fetchDataAndProcess('getPopulation', function(data) {
-    	console.log(data);
  		document.getElementById("gu_rank").innerHTML = data.gu_secugrade;
   		document.getElementById("gu_people").innerHTML = data.population.toString()
       .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     });
     
     fetchDataAndProcess('getSecufacil', function(data) {
-    	  console.log(data);
         addData(securityChart1, data.avg_cctv, data.cctv, guNameValue);
         addData(securityChart2, data.avg_lights, data.lights, guNameValue);
         addData(securityChart3, data.avg_policestation, data.policeStation, guNameValue);
         
     });
     fetchDataAndProcess('getArRate', function(data) {
-  	  console.log(data);
   	 safetyChart.destroy();
    	  const ar_rateDatas = data.map(item => item.ar_rate);
     	  ar_rateChart(ar_rateDatas);
@@ -132,8 +121,7 @@ fetchDataAndProcess('getSecufacil', function(data) {
         return response.json();
       })
       .then(data => {
-        console.log(data);
-        document.getElementById("chart_resultMent3").innerHTML = "<p>2023 년도 " + data.rank + "위</p>";
+        document.getElementById("chart_resultMent3").innerHTML = "<p>2023 년도 " + data + "위</p>";
 
 
       })
@@ -268,10 +256,8 @@ fetchDataAndProcess('getSecufacil', function(data) {
 
   buttons.forEach(function (button) {
     button.addEventListener('click', function () {
-      // 클릭된 버튼의 값을 읽어옵니다.
+      // 클릭된 버튼의 값
       var year = button.id;
-      // 읽어온 값을 콘솔에 출력합니다. 실제로 사용하는 곳에서는 다른 작업을 수행할 수 있습니다.
-      console.log("Button Value: " + buttonValue);
       guName = document.getElementById("selectbox");
       guNameValue = guName.options[guName.selectedIndex].value;
       fetch('getPerceivedSafety?year=' + year + "&guNameValue=" + guNameValue, {
@@ -288,26 +274,24 @@ fetchDataAndProcess('getSecufacil', function(data) {
           return response.json();
         })
         .then(data => {
-          console.log(data);
           // 클릭된 버튼의 ID 가져오기
           var year = button.id;
-          console.log("year : " + year);
           // ID에 따라 #lower의 내용 변경
           switch (year) {
             case "y2019":
-              document.getElementById("chart_resultMent3").innerHTML = "<p>2019 년도 " + data.rank + "위</p>";
+              document.getElementById("chart_resultMent3").innerHTML = "<p>2019 년도 " + data + "위</p>";
               break;
             case "y2020":
-              document.getElementById("chart_resultMent3").innerHTML = "<p>2020 년도 " + data.rank + "위</p>";
+              document.getElementById("chart_resultMent3").innerHTML = "<p>2020 년도 " + data + "위</p>";
               break;
             case "y2021":
-              document.getElementById("chart_resultMent3").innerHTML = "<p>2021 년도" + data.rank + "위</p>";
+              document.getElementById("chart_resultMent3").innerHTML = "<p>2021 년도" + data + "위</p>";
               break;
             case "y2022":
-              document.getElementById("chart_resultMent3").innerHTML = "<p>2022 년도 " + data.rank + "위</p>";
+              document.getElementById("chart_resultMent3").innerHTML = "<p>2022 년도 " + data + "위</p>";
               break;
             case "y2023":
-              document.getElementById("chart_resultMent3").innerHTML = "<p>2023 년도 " + data.rank + "위</p>";
+              document.getElementById("chart_resultMent3").innerHTML = "<p>2023 년도 " + data + "위</p>";
               break;
             default:
               document.getElementById("chart_resultMent3").innerHTML = "<p>기본 내용</p>";

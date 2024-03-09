@@ -23,9 +23,9 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6db9027784dedc18bbafd22614168f8&libraries=services,drawing"></script>
-<script src="./json/seoul_park.json" type="text/javascript"></script>
-<script src="./json/policeOffice.geojson" type="text/javascript"></script>
-<script src="./json/SeoulCCTV.json" type="text/javascript"></script>
+<script src="../json/seoul_park.json" type="text/javascript"></script>
+<script src="../json/policeOffice.geojson" type="text/javascript"></script>
+<script src="../json/SeoulCCTV.json" type="text/javascript"></script>
 </head>
 
 <body>

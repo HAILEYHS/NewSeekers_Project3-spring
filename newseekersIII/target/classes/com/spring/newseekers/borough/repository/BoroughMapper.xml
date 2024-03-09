@@ -26,13 +26,6 @@
 		<result property="avg_lights" column="avg_lights" />
 		<result property="avg_policestation" column="avg_policestation" />
 	</resultMap>
-	<resultMap id="perceivedSafty"
-		type="com.spring.newseekers.borough.model.PerceivedSafetyVO">
-		<result property="year" column="year" />
-		<result property="local" column="local" />
-		<result property="guName" column="guname" />
-		<result property="rank" column="rank" />
-	</resultMap>
 
 	<select id="getArRate" parameterType="string" resultMap="arRate">
 		SELECT
@@ -73,25 +66,16 @@
 		gu_name.local WHERE year = 2022
 	</select>
 
-	<select id="getPerceivedSafetyOnload" parameterType="String" resultMap="perceivedSafty">
-		select rank
-		from (
-		select local, y2023,
-		rank() over (order by y2023 desc) as rank
-		from perceivedsafety )
-		where local in (
-		select
-		local from gu_name where guname = #{guNameValue});
+	<select id="getPerceivedSafety" resultType="String">
+		SELECT rank
+		FROM (
+		SELECT local, ${year} AS year,
+		RANK() OVER (ORDER BY ${year} DESC) AS rank
+		FROM perceivedsafety
+		)
+		WHERE local IN (
+		SELECT local FROM gu_name WHERE guname = #{guNameValue}
+		)
 	</select>
 
-	<select id="getPerceivedSafety" parameterType="map" resultMap="perceivedSafty">
-		select rank
-		from (
-		select local, #{year}, 
-		rank() over (order by #{year} desc) as rank
-		from perceivedsafety )
-		where local in (
-		select
-		local from gu_name where guname = #{guNameValue});
-	</select>
 </mapper>

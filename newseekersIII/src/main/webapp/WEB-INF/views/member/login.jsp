@@ -18,7 +18,6 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>회원가입</title>
 
-<script src="../js/login.js"></script>
 </head>
 
 <body class="text-center">
