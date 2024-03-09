@@ -4,7 +4,7 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.ArrayList"%>
 <c:set var="region" value="${param.region}" />
-<!DOCTYPE html>
+<!DOCTYPE html> 	
 
 <head>
 <meta charset="UTF-8">
@@ -23,9 +23,9 @@
 	crossorigin="anonymous" referrerpolicy="no-referrer" />
 <script type="text/javascript"
 	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=b6db9027784dedc18bbafd22614168f8&libraries=services,drawing"></script>
-<script src="./json/seoul_park.json" type="text/javascript"></script>
-<script src="./json/policeOffice.geojson" type="text/javascript"></script>
-<script src="./json/SeoulCCTV.json" type="text/javascript"></script>
+<script src="../json/seoul_park.json" type="text/javascript"></script>
+<script src="../json/policeOffice.geojson" type="text/javascript"></script>
+<script src="../json/SeoulCCTV.json" type="text/javascript"></script>
 </head>
 
 <body>
@@ -68,14 +68,14 @@
 						</select>
 					</div>
 					<div id="gu_rankBox">
-						치안등급 : <span id="gu_rank">1</span>
+						치안등급 :	${region} <span id="gu_rank">1</span>
 					</div>
 					<div id="gu_peopleBox">
 						인구 수 : <span id="gu_people">5421</span>
 					</div>
 				</div>
 			</div>
-
+		
 			<div id="gu_nameBox" class="col-lg-5">
 				<span id="gu_name"> <c:choose>
 						<c:when test="${region eq '강남구'}">
