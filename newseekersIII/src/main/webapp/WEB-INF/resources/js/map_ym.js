@@ -1,7 +1,7 @@
 
 //call the kakao map
 map = new kakao.maps.Map(document.getElementById('map'), {
-    center: new kakao.maps.LatLng(37.56100278, 126.9776217),
+    center: new kakao.maps.LatLng(37.514575, 127.0495556),
     level: 6,
     minLevel: 2,
     maxLevel: 8,
@@ -59,7 +59,7 @@ function shownearcctv(latLng) {
         }
     })
     for (var i = 0; i < nearcctvs.length; i++) {
-        var imageSrc = "./img/cctv2.png";
+        var imageSrc = "../img/cctv2.png";
         var imageSize = new kakao.maps.Size(32, 37);
         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
         var marker = new kakao.maps.Marker({
@@ -141,7 +141,7 @@ function polimarker(latLng) {
         if (linelength < 1700) { nearpolice.push(element) }
     })
     for (var i = 0; i < nearpolice.length; i++) {
-        var imageSrc = "./img/police_office_icon.png";
+        var imageSrc = "../img/police_office_icon.png";
         var imageSize = new kakao.maps.Size(32, 37);
         var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
         var marker = new kakao.maps.Marker({
@@ -359,7 +359,7 @@ function showGuName(content, position) {
 
 
 /**----------------park marker start------------------**/
-var markerImageSrc = "./img/parkMarker.png";
+var markerImageSrc = "../img/parkMarker.png";
 function createMarkerImage(src, size, options) {
     var markerImage = new kakao.maps.MarkerImage(src, size, options);
     return markerImage;
