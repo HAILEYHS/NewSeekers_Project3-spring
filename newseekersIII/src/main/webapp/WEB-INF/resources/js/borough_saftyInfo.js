@@ -29,11 +29,12 @@ function fetchDataAndProcess(url, callback) {
 
 
 //fetchDataAndProcess 함수 사용
+//검거비율 그래프
 fetchDataAndProcess('getArRate', function(data) {
   const ar_rateDatas = data.map(item => item.ar_rate);
   ar_rateChart(ar_rateDatas);
 });
-
+//자치구 랭크, 자치구 인구 수
 fetchDataAndProcess('getPopulation', function(data) {
   if (data.gu_secugrade !== undefined) {
     document.getElementById("gu_rank").innerHTML = data.gu_secugrade;
@@ -43,13 +44,16 @@ fetchDataAndProcess('getPopulation', function(data) {
 	console.log("데이터 없음");
 }
 });
-
+//치안시설물 그래프
 fetchDataAndProcess('getSecufacil', function(data) {
     addData(securityChart1, data.avg_cctv, data.cctv, guNameValue);
     addData(securityChart2, data.avg_lights, data.lights, guNameValue);
     addData(securityChart3, data.avg_policestation, data.policeStation, guNameValue);
 });
-
+//경찰서 테이블
+fetchDataAndProcess('getPoliceStations', function(data) {
+   createPoliceStationTable(data);
+});
 
  fetch('getPerceivedSafety?year=' + year + "&guNameValue=" + guNameValue, {
  method: 'Get',
@@ -74,11 +78,7 @@ fetchDataAndProcess('getSecufacil', function(data) {
  console.error("Fetch error: " + error);
  });
 
-  const addData = (chart, data1, data2, guNameValue) => {
-    chart.data.datasets[0].data = [data1, data2];
-    chart.data.labels = ['평균', guNameValue]
-    chart.update();
-  };
+
 
 
   // 셀렉트박스
@@ -86,7 +86,7 @@ fetchDataAndProcess('getSecufacil', function(data) {
   selectregion.addEventListener('input', function () {
     guName = document.getElementById("selectbox");
     guNameValue = guName.options[guName.selectedIndex].value;
-    document.getElementById("gu_name").innerHTML = guNameValue;
+    document.getElementById("gu_name").innerHTML = "< "+guNameValue+" >";
 
 
     fetchDataAndProcess('getPopulation', function(data) {
@@ -105,6 +105,10 @@ fetchDataAndProcess('getSecufacil', function(data) {
   	 safetyChart.destroy();
    	  const ar_rateDatas = data.map(item => item.ar_rate);
     	  ar_rateChart(ar_rateDatas);
+    });
+    //경찰서 테이블
+    fetchDataAndProcess('getPoliceStations', function(data) {
+		createPoliceStationTable(data); 
     });
 
     fetch('getPerceivedSafety?year=' + year + "&guNameValue=" + guNameValue, {
@@ -132,6 +136,13 @@ fetchDataAndProcess('getSecufacil', function(data) {
   });
 
 
+
+// 치안 시설물 그래프
+  const addData = (chart, data1, data2, guNameValue) => {
+    chart.data.datasets[0].data = [data1, data2];
+    chart.data.labels = ['평균', guNameValue]
+    chart.update();
+  };
   var security_CCTV = {
     labels: ['평균', guNameValue],
     // a 강남구의 범례
@@ -139,7 +150,6 @@ fetchDataAndProcess('getSecufacil', function(data) {
       label: [
         ' 지역 '
       ],
-
       data: [0, 0],
       backgroundColor: ['#43c2c2', '#4eddad'],
     }]
@@ -153,7 +163,6 @@ fetchDataAndProcess('getSecufacil', function(data) {
       label: [
         ' 지역 '
       ],
-
       data: [0, 0],
       backgroundColor: ['#43c2c2', '#4eddad'],
     }]
@@ -166,13 +175,10 @@ fetchDataAndProcess('getSecufacil', function(data) {
       label: [
         ' 지역 '
       ],
-
       data: [0, 0],
       backgroundColor: ['#43c2c2', '#4eddad'],
     }]
   };
-
-
 
   var ctx1 = document.getElementById('myChart1').getContext('2d');
   var securityChart1 = new Chart(ctx1, {
@@ -190,7 +196,6 @@ fetchDataAndProcess('getSecufacil', function(data) {
     }
   });
 
-
   var ctx2 = document.getElementById('myChart2').getContext('2d');
   var securityChart2 = new Chart(ctx2, {
     type: 'bar',
@@ -206,7 +211,6 @@ fetchDataAndProcess('getSecufacil', function(data) {
 
     }
   });
-
 
   var ctx3 = document.getElementById('myChart3').getContext('2d');
   var securityChart3 = new Chart(ctx3, {
@@ -224,13 +228,7 @@ fetchDataAndProcess('getSecufacil', function(data) {
   });
 
 
-
-
-  // ----------------------------------------------------------
-
-
-
-  // 검거비율 만드는 차트 함수
+ // 검거비율 그래프
   function ar_rateChart(data) {
     var ctx = document.getElementById('safetyChart').getContext('2d');
     safetyChart = new Chart(ctx, {
@@ -250,8 +248,29 @@ fetchDataAndProcess('getSecufacil', function(data) {
       }
     });
   }
+  function guChangeChart(data) {
+  safetyChart.destroy();
 
+  var ctx = document.getElementById('safetyChart').getContext('2d');
+  safetyChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: ['2004', '2007', '2010', '2013', '2015', '2018', '2022'],
+      datasets: [{
+        label: '검거 비율',
+        data: data,
+        fill: false,
+        borderColor: 'rgb(75, 192, 192)',
+        tension: 0.1
+      }]
+    },
+    options: {
+      maintainAspectRatio: false
+    }
+  });
+}
 
+//체감 안전도 그래프
   var buttons = document.querySelectorAll('.btn');
 
   buttons.forEach(function (button) {
@@ -308,40 +327,51 @@ fetchDataAndProcess('getSecufacil', function(data) {
 
 
 
+//경찰관서 데이터를 테이블로 만드는 함수
+function createPoliceStationTable(data) {
+    var tableBody = document.getElementById('policeStationData');
+
+    // 테이블 본문 초기화
+    tableBody.innerHTML = '';
+
+    // 데이터가 없을 경우 처리
+    if (data.length === 0) {
+        var noDataRow = tableBody.insertRow();
+        var noDataCell = noDataRow.insertCell();
+        noDataCell.colSpan = 6; // 테이블 셀이 6개이므로
+        noDataCell.textContent = '데이터가 없습니다.';
+        return;
+    }
+
+    // 테이블 본문에 데이터 추가
+    data.forEach(function (item) {
+    var row = tableBody.insertRow();
+    // 각 데이터 항목에 대해 새로운 셀을 생성하고 데이터를 채움
+    var districtCell = row.insertCell();
+    districtCell.textContent = item.district;
+
+    var subDistrictCell = row.insertCell();
+    subDistrictCell.textContent = item.sub_district;
+
+    var departmentCell = row.insertCell();
+    departmentCell.textContent = item.department;
+
+    var addressCell = row.insertCell();
+    addressCell.textContent = item.address;
+
+    var telCell = row.insertCell();
+    telCell.textContent = item.tel;
+    });
+}
+
+
+//지도 모달창
   var modalwindow = document.getElementById('modal')
   modalwindow.addEventListener('click', function () {
     modalwindow.style.display = "none";
   })
 
 }
-
-
-
-
-
-
-function guChangeChart(data) {
-  safetyChart.destroy();
-
-  var ctx = document.getElementById('safetyChart').getContext('2d');
-  safetyChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: ['2004', '2007', '2010', '2013', '2015', '2018', '2022'],
-      datasets: [{
-        label: '검거 비율',
-        data: data,
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-      }]
-    },
-    options: {
-      maintainAspectRatio: false
-    }
-  });
-}
-
 
 
 var modalwindow2 = document.querySelector("#policeq")

@@ -163,9 +163,27 @@
 			</div>
 		</div>
 	</div>
+	<!-- policeStation table -->
+	<div id="policeStationBox"  class="container-fluid">
+		<div id="policeAddr">
+			<h2>가까운 경찰서 알아보기</h2>
+		</div>
 
 
-	<!-- ------- map ------------------------------------------------  -->
+		<table id="policeStationTable">
+			<thead id="policeStationTitle">
+				<tr>
+					<td>구</td>
+					<td>지역</td>
+					<td>부서</td>
+					<td>주소</td>
+					<td>전화번호</td>
+				</tr>
+			</thead>
+			<tbody id="policeStationData"></tbody>
+		</table>
+	</div>
+	<!-- map -->
 
 	<div id="map_container" class="container-fluid">
 		<div id="map_box" class="row">

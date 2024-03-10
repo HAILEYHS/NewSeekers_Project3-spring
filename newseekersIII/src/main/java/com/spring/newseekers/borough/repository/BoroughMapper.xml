@@ -26,6 +26,15 @@
 		<result property="avg_lights" column="avg_lights" />
 		<result property="avg_policestation" column="avg_policestation" />
 	</resultMap>
+	<resultMap id="policeStations"
+		type="com.spring.newseekers.borough.model.PoliceStationVO">
+		<result property="id" column="id" />
+		<result property="district" column="district" />
+		<result property="sub_district" column="sub_district" />
+		<result property="department" column="department" />
+		<result property="tel" column="tel" />
+		<result property="address" column="address" />
+	</resultMap>
 
 	<select id="getArRate" parameterType="string" resultMap="arRate">
 		SELECT
@@ -70,12 +79,18 @@
 		SELECT rank
 		FROM (
 		SELECT local, ${year} AS year,
-		RANK() OVER (ORDER BY ${year} DESC) AS rank
+		RANK() OVER (ORDER BY ${year} DESC) AS
+		rank
 		FROM perceivedsafety
 		)
 		WHERE local IN (
-		SELECT local FROM gu_name WHERE guname = #{guNameValue}
+		SELECT local FROM gu_name
+		WHERE guname = #{guNameValue}
 		)
 	</select>
-
+	<select id="getPoliceStations" resultMap="policeStations">
+		select * FROM police_stations
+		join gu_name on police_stations.district = gu_name.guname
+		where gu_name.guname= #{guNameValue}
+	</select>
 </mapper>

@@ -35,6 +35,20 @@
 			<version>${org.springframework-version}</version>
 		</dependency>
 
+		<!-- Qartz -->
+		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+		
+		<!-- javax.annotation -->
+		<dependency>
+			<groupId>javax.annotation</groupId>
+			<artifactId>javax.annotation-api</artifactId>
+			<version>1.3.2</version> <!-- 혹은 최신 버전 -->
+		</dependency>
+
 		<!-- mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -96,6 +110,11 @@
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.9.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20230227</version>
 		</dependency>
 
 		<!-- Logging -->
