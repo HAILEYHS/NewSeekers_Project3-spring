@@ -75,7 +75,7 @@
 		gu_name.local WHERE year = 2022
 	</select>
 
-	<select id="getPerceivedSafety" resultType="String">
+	<select id="getPerceivedSafety" resultType="string">
 		SELECT rank
 		FROM (
 		SELECT local, ${year} AS year,

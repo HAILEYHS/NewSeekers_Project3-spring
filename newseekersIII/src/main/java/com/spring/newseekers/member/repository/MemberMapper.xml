@@ -16,12 +16,14 @@
 
 	<insert id="insertMember"
 		parameterType="com.spring.newseekers.member.model.MemberVO">
-		insert into Member(user_id, user_pw, name, email, address)
+		insert into Member(user_id, user_pw, name, email,
+		address)
 		values (#{user_id}, #{user_pw}, #{name}, #{email}, #{address})
 	</insert>
 
 	<select id="selectId" parameterType="string" resultType="int">
-		SELECT COUNT(*)
+		SELECT
+		COUNT(*)
 		FROM MEMBER
 		WHERE user_id = #{user_id}
 	</select>
@@ -32,6 +34,11 @@
 		from member
 		where user_id= #{user_id}
 	</select>
+	<select id="selectEmail" parameterType="string" resultType="com.spring.newseekers.member.model.MemberVO">
+		select user_id, user_pw, name, email, address
+		from member
+		where email= #{email}
+	</select>
 
 	<select id="selctAllMembers"
 		resultType="com.spring.newseekers.member.model.MemberVO">
@@ -41,15 +48,17 @@
 
 	<update id="updateMember"
 		parameterType="com.spring.newseekers.member.model.MemberVO">
-		update member 
-		set user_id= #{user_id}, user_pw= #{user_pw}, name= #{name}, email= #{email}, address=#{address} 
+		update member
+		set user_id= #{user_id}, user_pw= #{user_pw}, name= #{name}, email=
+		#{email}, address=#{address}
 		where user_id= #{user_id}
 	</update>
 
 	<delete id="deleteMember"
 		parameterType="com.spring.newseekers.member.model.MemberVO">
 		delete from member
-		where user_id= #{user_id} and user_pw= #{user_pw}
+		where user_id= #{user_id} and user_pw=
+		#{user_pw}
 	</delete>
 
 	<select id="getPassword" parameterType="string"

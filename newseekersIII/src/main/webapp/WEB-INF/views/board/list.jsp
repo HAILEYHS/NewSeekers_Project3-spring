@@ -24,8 +24,8 @@
 <body>
 	<!-- header  -->
 	<jsp:include page="../include/nav.jsp" />
-
-	<c:set var="page" value="${param.page}" />
+	<!-- 페이지네이션 < 버튼 생성을 위해 현재페이지 받음. -->
+	<c:set var="currentPage" value="${param.page}" />
 
 	<div class="board_wrap">
 		<div class="board_title">
@@ -69,7 +69,7 @@
 
 				<c:forEach var="pageNumber" begin="${startPage}" end="${endPage}">
 					<c:set var="onClass"
-						value="${pageNumber eq page ? 'on' : ''}" />
+						value="${pageNumber eq currentPage ? 'on' : ''}" />
 					<a href="list?page=${pageNumber}" class="num ${onClass}">${pageNumber}</a>
 				</c:forEach>
 

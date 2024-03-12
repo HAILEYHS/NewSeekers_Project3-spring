@@ -28,16 +28,13 @@ public class PoliceStationAPIData {
 			// 공공DB Open API에서 JSON 데이터 가져오기
 			String policeStationApiUrl = "https://api.odcloud.kr/api/15054711/v1/uddi:9097ad1f-3471-42c6-a390-d85b5121816a?page=1&perPage=243&serviceKey=ZMC3yM4jjMpWPdEfL3Hl2BlzqhQUeN8herjSp2HWSNyV4aUEh7HaJliCLEyGGi2Fn38GRXeQeCiE1WAPXDJljA%3D%3D";
 			String policeStationData = fetchDataFromAPI(policeStationApiUrl);
-			System.out.println("공공 API json 데이터 가져옴   : "+policeStationData);
 			// JSON 데이터 파싱
 			JSONObject policeStationDataJson = new JSONObject(policeStationData);
 			JSONArray policeStationArray = policeStationDataJson.getJSONArray("data");
 			// 테이블 존재 여부 확인
 			if (policeStationRepository.isTableExists() > 0) {
-				System.out.println("경찰서 테이블 존재 여부: "+policeStationRepository.isTableExists());
 				// 테이블이 존재하면 데이터 삭제
 				policeStationRepository.deleteData();
-				System.out.println("테이블 존재하므로 데이터 삭제");
 			} else {
 				// 테이블이 존재하지 않으면 테이블 생성
 				policeStationRepository.createTable();

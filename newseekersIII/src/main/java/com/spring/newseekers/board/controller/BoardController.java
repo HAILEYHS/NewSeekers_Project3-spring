@@ -122,8 +122,6 @@ public class BoardController {
 	public String write(BoardVO board, HttpSession session, Model model) {
 		String user_id = (String) session.getAttribute("user_id");
 		board.setUser_id(user_id); // BoardVO에 사용자 아이디 설정
-		System.out.println("board에 입력된 정보 : " + board);
-		System.out.println("아이디 잘 들어오는지 보자 : " + user_id);
 		boardService.write(board);
 		return "redirect:/board/list?page=1";
 	}
@@ -132,8 +130,6 @@ public class BoardController {
 	public String replyView(String community_num, Model model) {
 		BoardVO content = boardService.reply_view(community_num);
 		model.addAttribute("content", content);
-		System.out.println("replyView 정보 : " + content);
-		System.out.println("replyView group_num 정보 : " + content.getGroup_num());
 		return "/board/reply_view";
 	}
 
@@ -142,7 +138,6 @@ public class BoardController {
 		System.out.println("reply 들어옴");
 		boardService.replyShape(board);
 		boardService.reply(board);
-		System.out.println("지금 board에 뭐들어가있는지 출력 : " + board);
 		return "redirect:/board/list?page=1";
 	}
 }
