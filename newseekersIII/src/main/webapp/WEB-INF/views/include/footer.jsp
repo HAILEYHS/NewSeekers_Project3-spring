@@ -27,12 +27,13 @@
 				<button type="button" class="btn btn-danger" data-bs-dismiss="modal"
 					onclick="javascript:window.location='/newseekers/member/logout'">로그아웃</button>
 				<button type="button" class="btn btn-success"
-   				 onclick="javascript:window.location='/newseekers/member/modifyMember?id=${sessionScope.user_id}'">수정</button>
+    onclick="javascript:window.location='/newseekers/member/modifyMember?id=${sessionScope.user_id}'">수정</button>
 			</div>
 
 		</div>
 	</div>
 </div>
+
 
 
 <footer id="footer_container">

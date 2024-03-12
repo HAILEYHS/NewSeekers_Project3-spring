@@ -22,6 +22,11 @@ public class MemberService implements IMemberService{
 	public MemberVO selectMember(String user_id) {
 		return memberRepository.selectMember(user_id);
 	}
+	
+	@Override
+	public MemberVO selectEmail(String email) {
+		return memberRepository.selectEmail(email);
+	}
 
 	@Override
 	public List<MemberVO> selectAllMembers() {

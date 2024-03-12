@@ -33,7 +33,7 @@
 					aria-current="page" href="./seoul_main.jsp">
 						<p>서울시 안전지도</p>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="borough_saftyInfo">
+				<li class="nav-item"><a class="nav-link" href="/newseekers/borough/borough_saftyInfo">
 						<p>우리동네 돋보기</p>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="../preview.jsp">

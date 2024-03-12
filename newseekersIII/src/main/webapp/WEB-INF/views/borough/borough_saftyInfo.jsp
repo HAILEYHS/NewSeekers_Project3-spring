@@ -15,8 +15,8 @@
 	rel="stylesheet"
 	integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="../css/gu_page.css">
 <link rel="stylesheet" href="../css/header.footer.css">
+<link rel="stylesheet" href="../css/gu_page.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
 	integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -295,7 +295,10 @@
 	<br>
 	<br>
 	<br>
-	<br> <!-- footer --><jsp:include page="../include/footer.jsp" />
+	<br> 
+	<!-- footer -->
+	<jsp:include page="../include/footer.jsp" />
+	
 	<!-- -------------- script ---------------- -->
 	<script
 		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

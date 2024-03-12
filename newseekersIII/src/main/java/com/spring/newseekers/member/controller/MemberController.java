@@ -32,9 +32,20 @@ public class MemberController {
 
 	@PostMapping(value = "/member/join")
 	public String insertMember(MemberVO member, HttpSession session, Model model) {
-		memberService.insertMember(member);
-		session.invalidate();
-		return "/member/login";
+		   if (member == null) {
+		        model.addAttribute("error", "입력 값이 없습니다. 다시 입력해 주세요.");
+		        return "/member/join";
+		    }
+		    
+		    MemberVO dbMember = memberService.selectMember(member.getUser_id());
+		    if (dbMember != null) {
+		        model.addAttribute("error", "이미 사용중인 아이디입니다.");
+		        return "/member/join";
+		    } else {
+		        memberService.insertMember(member);
+		        session.invalidate();
+		        return "/member/login";
+		    }
 	}
 
 	// 회원가입시 중복 ID인지 검사하는 메소드
@@ -99,11 +110,9 @@ public class MemberController {
 		if (user_id != null && !user_id.equals("")) {
 			MemberVO member = memberService.selectMember(user_id);
 			model.addAttribute("member", member);
-			model.addAttribute("message", "UPDATE_USER_INFO");
 			return "/member/modifyMember";
 		} else {
 			// user_id가 세션에 없을때(로그인하지 않았을 때)
-			model.addAttribute("message", "NOT_LOGIN_USER");
 			return "/member/login";
 		}
 	}
@@ -114,7 +123,6 @@ public class MemberController {
 	        // 회원 정보 업데이트
 	        memberService.updateMember(member);
 
-	        model.addAttribute("message", "UPDATE_USER_INFO");
 	        model.addAttribute("member", member);
 	        session.invalidate();
 	        return "/member/login";

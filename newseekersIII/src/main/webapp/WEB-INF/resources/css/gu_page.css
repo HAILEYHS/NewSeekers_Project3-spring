@@ -550,3 +550,13 @@
 #sidebar a:hover {
 	color: rgb(95, 166, 71);
 }
+
+/*모달창 css*/
+.modal-body {
+	text-align: center;
+}
+
+/* 모달창 전체 크기 조절 */
+.modal-dialog {
+	width: 50%;
+}

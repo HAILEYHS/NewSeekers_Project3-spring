@@ -1,8 +1,7 @@
 @font-face {
 	font-family: 'NPSfontBold';
 	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2')
-		format('woff2');
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
 	font-weight: 700;
 	font-style: normal;
 }
@@ -10,8 +9,7 @@
 @font-face {
 	font-family: 'SUITE-Regular';
 	src:
-		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2')
-		format('woff2');
+		url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/SUITE-Regular.woff2') format('woff2');
 	font-weight: 400;
 	font-style: normal;
 }
@@ -70,7 +68,8 @@
 	border-bottom: 3px solid #8a8a8a;
 }
 
-@media ( max-width : 767px) {
+@media (max-width : 767px) {
+
 	/* .headbar {
         text-align: center;
         background: rgba(255, 255, 255, 1);
@@ -78,22 +77,27 @@
 	.navbar-toggler {
 		margin-inline-start: 85%;
 	}
+
 	#navMenu {
 		margin-top: 20px;
 		height: 190px;
 	}
+
 	#navMenu li {
 		margin-left: 30%;
 		width: 120px;
 	}
+
 	#logo img {
 		width: 100px;
 		margin-left: 50%;
 	}
+
 	.nav-item a {
 		/* background-color: aqua; */
 		height: 33px;
 	}
+
 	.nav-item p {
 		/* background-color: #8a8a8a; */
 		height: 30px;
@@ -106,6 +110,7 @@
 	#logo img {
 		width: 200px;
 	}
+
 	.nav-item {
 		width: 110px;
 		margin-left: 10px;
@@ -123,14 +128,27 @@
 	#logo {
 		margin-left: 4%;
 	}
+
 	#navMenu {
 		margin-left: 5%;
 	}
 }
 
+/*모달창 css*/
+.modal-body {
+	text-align: center;
+}
 
+.modal-dialog {
+	width: 300px;
+	height: 400px;
+}
 
-/* =========== footer ============================================ */
+.modal-dialog img {
+	width: 80%;
+}
+
+/* footer */
 #footer_container {
 	background-color: #c5c4c4;
 	height: 150px;
@@ -179,6 +197,11 @@ a:link {
 
 a:visited {
 	/* 텍스트 링크 들어갔던것 */
+	text-decoration: none;
+	color: black;
+}
+
+a:hover {
 	text-decoration: none;
 	color: black;
 }
