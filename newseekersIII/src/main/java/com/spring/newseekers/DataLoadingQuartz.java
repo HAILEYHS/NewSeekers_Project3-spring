@@ -11,7 +11,6 @@ public class DataLoadingQuartz implements Job{
 
 	@Override
 	public void execute(JobExecutionContext ctx) throws JobExecutionException {
-		// TODO Auto-generated method stub
 		try {
 			new PoliceStationAPIData();
 		} catch (Exception e) {
