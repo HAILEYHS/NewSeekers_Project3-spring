@@ -14,7 +14,7 @@
 		<result property="address" column="address" />
 	</resultMap>
 
-	<insert id="insertMember"
+	<insert id="joinMember"
 		parameterType="com.spring.newseekers.member.model.MemberVO">
 		insert into Member(user_id, user_pw, name, email,
 		address)
@@ -33,11 +33,6 @@
 		select user_id, user_pw, name, email, address
 		from member
 		where user_id= #{user_id}
-	</select>
-	<select id="selectEmail" parameterType="string" resultType="com.spring.newseekers.member.model.MemberVO">
-		select user_id, user_pw, name, email, address
-		from member
-		where email= #{email}
 	</select>
 
 	<select id="selctAllMembers"
