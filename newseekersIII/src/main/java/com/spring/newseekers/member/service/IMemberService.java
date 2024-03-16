@@ -1,16 +1,22 @@
 package com.spring.newseekers.member.service;
 
 import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.ui.Model;
 
 import com.spring.newseekers.member.model.MemberVO;
 
 public interface IMemberService {
-	void insertMember(MemberVO member);
-	public boolean selectId(String user_id);
-	MemberVO selectMember(String user_id);
-	MemberVO selectEmail(String email);
+	String joinMember(MemberVO member, HttpSession session, Model model);
+	Map<String, Boolean> confirmId(MemberVO member);
+	boolean selectId(String user_id);
+	String login(String user_id, String user_pw, HttpSession session, Model model);
+	String logout(HttpSession session);
 	List<MemberVO> selectAllMembers();
-	void updateMember(MemberVO member);
-	void deleteMember(MemberVO member);
-	String getPassword(String user_id);
+	String updateMemberForm(HttpSession session, Model model);
+	String updateMember(MemberVO member, HttpSession session, Model model);
+	String deleteMember(String user_pw, HttpSession session, Model model);
 }

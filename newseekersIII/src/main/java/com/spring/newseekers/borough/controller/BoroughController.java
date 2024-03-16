@@ -27,38 +27,31 @@ public class BoroughController {
 	@GetMapping(value="/borough/getArRate")
 	@ResponseBody
 	public List<ArRateVO> getArRate(@RequestParam("guNameValue") String guNameValue) {
-		 List<ArRateVO> arRateData = boroughService.getArRate(guNameValue);
-		return arRateData;
+		return boroughService.getArRate(guNameValue);
 	}
 	
 	@GetMapping(value="/borough/getPopulation")
 	@ResponseBody
 	public PopulationVO getPopulation(@RequestParam("guNameValue") String guNameValue){
-		PopulationVO population = boroughService.getPopulation(guNameValue);
-		return population;
+		return boroughService.getPopulation(guNameValue);
 	}
 	
 	@GetMapping(value="/borough/getSecufacil")
 	@ResponseBody
 	public SecufacilVO getSecufacil(@RequestParam("guNameValue") String guNameValue){
-		SecufacilVO secufacil = boroughService.getSecufacil(guNameValue);
-		return secufacil;
+		return boroughService.getSecufacil(guNameValue);
 	}
 	
 	@GetMapping(value = "/borough/getPerceivedSafety")
 	@ResponseBody
 	public String getPerceivedSafety(@RequestParam("year")String year,@RequestParam("guNameValue") String guNameValue) {
-		String perceivedSafety = boroughService.getPerceivedSafety(year, guNameValue);
-		return perceivedSafety;
+		return boroughService.getPerceivedSafety(year, guNameValue);
 	}
 	
 	@GetMapping(value="/borough/getPoliceStations")
 	@ResponseBody
 	public List<PoliceStationVO> getPoliceStations(@RequestParam("guNameValue") String guNameValue) {
-		System.out.println("컨트롤러 getPoliceStations 메소드 들어옴 자치구 이름: "+guNameValue);
-		List<PoliceStationVO> PoliceStations = boroughService.getPoliceStations(guNameValue);
-		System.out.println("컨트롤러에 잘 반환해주고 있나 PoliceStations : "+PoliceStations);
-		return PoliceStations;
+		return boroughService.getPoliceStations(guNameValue);
 	}
 
 }

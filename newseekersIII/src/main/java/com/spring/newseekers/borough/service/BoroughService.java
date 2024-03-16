@@ -38,7 +38,6 @@ public class BoroughService implements IBoroughService {
 	}
 	@Override
 	public List<PoliceStationVO> getPoliceStations(String guNameValue){
-		System.out.println("서비스 getPerceivedSafety메소드 들어옴. \r\n  guNameValue : "+ guNameValue);
 		return boroughRepository.getPoliceStations(guNameValue);
 	}
 }
