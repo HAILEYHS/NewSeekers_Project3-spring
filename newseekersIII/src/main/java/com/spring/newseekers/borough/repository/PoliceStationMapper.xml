@@ -13,14 +13,13 @@
 	<!-- 테이블을 생성하는 쿼리 -->
 	<update id="createTable">
 		CREATE TABLE POLICE_STATIONS (
-		id INT PRIMARY KEY,
+		id NUMBER PRIMARY KEY,
+		police_office VARCHAR2(50),
 		district VARCHAR2(50),
-		sub_district
-		VARCHAR2(50),
+		sub_district VARCHAR2(50),
 		department VARCHAR2(50),
 		tel VARCHAR2(20),
-		address
-		VARCHAR2(100)
+		address VARCHAR2(100)
 		)
 	</update>
 
@@ -32,9 +31,9 @@
 	<!-- 테이블에 데이터를 삽입하는 쿼리 -->
 	<insert id="insert">
 	INSERT INTO police_stations   
-	(id, district, sub_district, department, tel,  address)  
+	(id, police_office, district, sub_district, department, tel,  address)  
 	VALUES 
-	(#{id}, #{district}, #{sub_district}, #{department}, #{tel}, #{address})
+	(#{id},#{police_office}, #{district}, #{sub_district}, #{department}, #{tel}, #{address})
 	</insert>
 </mapper>
 

@@ -50,18 +50,11 @@
 				</div>
 
 				<div id="gu_box">
-					<%
-					ArrayList<String> guList = new ArrayList<String>();
-					guList.add("강남구");
-					guList.add("송파구");
-					guList.add("영등포구");
-					guList.add("성동구");
-					guList.add("노원구");
-					guList.add("강북구");
-					%>
+                <c:set var="guList" value='강남구,송파구,영등포구,성동구,노원구,강북구' />
 					<div id="local_box">
 						<select name="selectbox" id="selectbox">
-							<c:forEach var="gu" items="<%=guList%>">
+							<c:forEach var="gu" items="${guList}">
+							
 								<c:set var="selected" value="${gu eq region ? 'selected' : ''}" />
 								<option value="${gu}" ${selected}>${gu}</option>
 							</c:forEach>

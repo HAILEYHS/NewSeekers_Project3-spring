@@ -45,6 +45,7 @@ public class PoliceStationAPIData {
 				PoliceStationVO policeStation = new PoliceStationVO();
 				// JSON 데이터를 PoliceStation 객체로 변환
                 policeStation.setId(stationJson.getInt("연번")); 
+                policeStation.setPolice_office(stationJson.getString("시도청"));
                 policeStation.setDistrict(getDistrict(stationJson.getString("경찰서")));
                 policeStation.setSub_district(stationJson.getString("관서명"));
                 policeStation.setDepartment(stationJson.getString("구분"));
