@@ -3,6 +3,7 @@ package com.spring.newseekers.borough.model;
 
 public class PoliceStationVO {
 	private int id;
+	private String police_office;
 	private String district;
 	private String sub_district;
 	private String department;
@@ -13,6 +14,13 @@ public class PoliceStationVO {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getPolice_office() {
+		return police_office;
+	}
+	public void setPolice_office(String police_office) {
+		this.police_office = police_office;
 	}
 	public String getDistrict() {
 		return district;
@@ -46,9 +54,10 @@ public class PoliceStationVO {
 	}
 	@Override
 	public String toString() {
-		return "PoliceStationVO [id=" + id +", district=" + district
+		return "PoliceStationVO [id=" + id + ", police_office=" + police_office + ", district=" + district
 				+ ", sub_district=" + sub_district + ", department=" + department + ", tel=" + tel + ", address="
 				+ address + "]";
 	}
+
 	
 }
