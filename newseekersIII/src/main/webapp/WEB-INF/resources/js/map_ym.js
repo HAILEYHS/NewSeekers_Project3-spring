@@ -24,7 +24,10 @@ function zoomOut() {
 
 // call the cctv json
 var cctvjson = JSON.parse(JSON.stringify(mapData3));
+console.log("mapData3: "+mapData3);
 var cctvSet = cctvjson.features;
+console.log("cctvSet: "+cctvSet);
+
 var cctvs = [];
 cctvSet.forEach(element => {
     cctvAddr = element.Address;
@@ -35,7 +38,7 @@ cctvSet.forEach(element => {
     var oneCctv = { cctvAddr, cctvNum, cctvLat, cctvLon }
     cctvs.push(oneCctv);
 })
-
+console.log("cctvs : "+cctvs);
 var nearcctvmarkers = [];
 var nearcctvs = [];
 function shownearcctv(latLng) {
