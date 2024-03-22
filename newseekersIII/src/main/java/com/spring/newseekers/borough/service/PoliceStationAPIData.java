@@ -24,6 +24,7 @@ public class PoliceStationAPIData {
 
 	@PostConstruct
 	public void init() {
+		System.out.println("경찰서 init메소드 들어옴");
 		try {
 			// 공공DB Open API에서 JSON 데이터 가져오기
 			String policeStationApiUrl = "https://api.odcloud.kr/api/15054711/v1/uddi:9097ad1f-3471-42c6-a390-d85b5121816a?page=1&perPage=243&serviceKey=ZMC3yM4jjMpWPdEfL3Hl2BlzqhQUeN8herjSp2HWSNyV4aUEh7HaJliCLEyGGi2Fn38GRXeQeCiE1WAPXDJljA%3D%3D";
@@ -31,6 +32,7 @@ public class PoliceStationAPIData {
 			// JSON 데이터 파싱
 			JSONObject policeStationDataJson = new JSONObject(policeStationData);
 			JSONArray policeStationArray = policeStationDataJson.getJSONArray("data");
+			System.out.println("policeStationArray : "+policeStationArray);
 			// 테이블 존재 여부 확인
 			if (policeStationRepository.isTableExists() > 0) {
 				// 테이블이 존재하면 데이터 삭제
