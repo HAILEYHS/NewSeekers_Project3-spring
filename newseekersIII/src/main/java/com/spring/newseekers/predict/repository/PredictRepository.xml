@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.spring.newseekers.predict.repository.IPredictRepository">
+	<select id="getPredData" parameterType="string"
+		resultMap="regionData">
+		    <![CDATA[
+select crime.year, crime.homicide, crime.robber, crime.sexual, crime.theft, crime.violence, secufacil.lights, secufacil.cctv, secufacil.policestation, secufacil.policeman, env.population, env.area, env.pop_density, env.pub, env.grdp, env.single, secugrade.y2022
+from ( select gu_crime.year, gu_crime.homicide, gu_crime.robber, gu_crime.sexual, gu_crime.theft, gu_crime.violence
+from gu_crime, gu_name where gu_crime.year in (2013,2014,2015,2016,2017,2018,2019,2020,2021,2022)
+and gu_crime.local = gu_name.local
+and gu_name.guname = '${value}' ) crime
+join ( select gu_secufacil.year, gu_secufacil.lights, gu_secufacil.cctv, gu_secufacil.policestation, gu_secufacil.policeman
+from gu_secufacil, gu_name where gu_secufacil.year in (2013,2014,2015,2016,2017,2018,2019,2020,2021,2022)
+and gu_secufacil.local = gu_name.local and gu_name.guname = '${value}' ) secufacil on crime.year = secufacil.year
+join ( select gu_env.year, gu_env.population, gu_env.area, gu_env.pop_density, gu_env.pub, gu_env.grdp, gu_env.single
+from gu_env, gu_name
+where gu_env.year in (2013,2014,2015,2016,2017,2018,2019,2020,2021,2022)
+and gu_env.local = gu_name.local and gu_name.guname = '${value}' ) env on crime.year = env.year
+join ( select gu_secugrade.y2022
+from gu_secugrade, gu_name where gu_secugrade.local = gu_name.local and gu_name.guname = '${value}' ) secugrade on 1 = 1 order by crime.year ASC 
+
+        ]]>
+	</select>
+
+	<resultMap id="regionData"
+		type="com.spring.newseekers.predict.model.PredictVO">
+		<result property="pub" column="PUB" />
+		<result property="grdp" column="GRDP" />
+		<result property="single" column="SINGLE" />
+		<result property="population" column="POPULATION" />
+		<result property="local" column="LOCAL" />
+		<result property="area" column="AREA" />
+		<result property="popDensity" column="POP_DENSITY" />
+		<result property="lights" column="LIGHTS" />
+		<result property="cctv" column="CCTV" />
+		<result property="policeStation" column="POLICESTATION" />
+		<result property="policeman" column="POLICEMAN" />
+		<result property="homicide" column="HOMICIDE" />
+		<result property="robber" column="ROBBER" />
+		<result property="sexual" column="SEXUAL" />
+		<result property="theft" column="THEFT" />
+		<result property="violence" column="VIOLENCE" />
+		<result property="y2022" column="Y2022" />
+		<result property="region" column="guname" />
+
+	</resultMap>
+
+</mapper>

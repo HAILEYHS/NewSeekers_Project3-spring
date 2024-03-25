@@ -4,8 +4,10 @@
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
-	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
@@ -23,10 +25,17 @@
 	<property name="mapperLocations" value="classpath:com/spring/newseekers/**/*.xml"/>
 </bean>
 
+<!-- 2024.03.19 삽입 -->
+<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+    <constructor-arg ref="sqlSessionFactory" />
+</bean>
+
 <context:component-scan base-package="com.spring.newseekers"/>
 
 <mybatis-spring:scan base-package="com.spring.newseekers.board.repository"/>
 <mybatis-spring:scan base-package="com.spring.newseekers.member.repository"/>
 <mybatis-spring:scan base-package="com.spring.newseekers.borough.repository"/>
+<mybatis-spring:scan base-package="com.spring.newseekers.seoul.repository"/>
+<mybatis-spring:scan base-package="com.spring.newseekers.predict.repository"/>
 
 </beans>

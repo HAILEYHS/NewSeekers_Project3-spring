@@ -93,7 +93,7 @@
 
 				<c:if test="${empty sessionScope.user_id}">
 					<div class="bt_wrap">
-						<a href="login">글쓰기</a>
+						<a href="/newseekers/member/login">글쓰기</a>
 					</div>
 				</c:if>
 			</div>

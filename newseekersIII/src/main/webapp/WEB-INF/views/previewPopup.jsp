@@ -6,7 +6,7 @@
 
 	<head>
 		<meta charset="UTF-8">
-		<link rel="stylesheet" href="./css/previewPopup.css">
+		<link rel="stylesheet" href="../css/previewPopup.css">
 		<title>산정기준 팝업</title>
 	</head>
 
@@ -141,11 +141,11 @@
 
 			<div class="popupMent">스케일을 조정하기 위한 요인들의 최대값과 최소값은 아래와 같습니다.</div>
 			<div class="OperatorBox">
-				<img src="./img/Popupplus.png" alt="">
+				<img src="../img/Popupplus.png" alt="">
 				<div class="Operator">(+) 요일의 경우 적용 수식</div>
 			</div>
 			<div class="OperatorBox">
-				<img src="./img/Popupminus.png" alt="">
+				<img src="../img/Popupminus.png" alt="">
 				<div class="Operator">(-) 요일의 경우 적용 수식</div>
 			</div>
 

@@ -30,13 +30,13 @@
 		<div class="collapse navbar-collapse" id="navMenu">
 			<ul class="navbar-nav lg-2">
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="./seoul_main.jsp">
+					aria-current="page" href="/newseekers/seoul_main">
 						<p>서울시 안전지도</p>
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="/newseekers/borough/borough_saftyInfo">
 						<p>우리동네 돋보기</p>
 				</a></li>
-				<li class="nav-item"><a class="nav-link" href="../preview.jsp">
+				<li class="nav-item"><a class="nav-link" href="/newseekers/predict">
 						<p>예측서비스</p>
 				</a></li>
 				<li class="nav-item"><a class="nav-link"

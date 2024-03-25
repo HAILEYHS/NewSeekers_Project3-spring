@@ -33,7 +33,7 @@
 			<!--nav-->
 			<header>
 				<div class="headbar fixed-top ">
-					<jsp:include page="./include/nav.jsp" />
+					<jsp:include page="./include/navUpLv.jsp" />
 
 					<div id="s_head" style="margin-top: 68px">
 						<span class="section-title" id="s_title">
@@ -414,7 +414,7 @@
 
 			<!--sidebar-->
 			<div id="sidebar">
-				<a href="./Index.jsp" id="home" data-bs-toggle="tooltip" data-bs-placement="right" title="홈으로"
+				<a href="/newseekers/" id="home" data-bs-toggle="tooltip" data-bs-placement="right" title="홈으로"
 					data-bs-custom-class="custom-tooltip" class="fa fa-home"></a> <a href="#" id="upsideIcon"
 					data-bs-toggle="tooltip" data-bs-placement="right" title="상단으로"
 					data-bs-custom-class="custom-tooltip" class="fa-solid fa-chevron-up"></a>
@@ -427,7 +427,7 @@
 
 
 			<!-- -------------- footer ---------------- -->
-			<jsp:include page="./include/footer.jsp" />
+			<jsp:include page="./include/footerUpLv.jsp" />
 
 
 

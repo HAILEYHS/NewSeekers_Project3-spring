@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper
+	namespace="com.spring.newseekers.seoul.repository.ISeoulRepository">
+	<resultMap id="crimeCount"
+		type="com.spring.newseekers.seoul.model.CrimeVO">
+		<result property="year" column="YEAR" />
+		<result property="local" column="LOCAL" />
+		<result property="totalCrime" column="TOTAL_CRIME" />
+		<result property="totalArrest" column="TOTAL_ARREST" />
+		<result property="totalArRate" column="TOTAL_AR_RATE" />
+		<result property="homicide" column="HOMICIDE" />
+		<result property="robber" column="ROBBER" />
+		<result property="sexual" column="SEXUAL" />
+		<result property="theft" column="THEFT" />
+		<result property="violence" column="VIOLENCE" />
+		<result property="homiRate" column="HOMI_RATE" />
+		<result property="robberRate" column="ROBBER_RATE" />
+		<result property="sexualRate" column="SEXUAL_RATE" />
+		<result property="theftRate" column="THEFT_RATE" />
+		<result property="violenceRate" column="VIOLENCE_RATE" />
+		<result property="arrestHomicide" column="ARREST_HOMICIDE" />
+		<result property="arrestRobber" column="ARREST_ROBBER" />
+		<result property="arrestSexual" column="ARREST_SEXUAL" />
+		<result property="arrestTheft" column="ARREST_THEFT" />
+		<result property="arrestViolence" column="ARREST_VIOLENCE" />
+		<result property="homiArRate" column="HOMI_AR_RATE" />
+		<result property="robArRate" column="ROB_AR_RATE" />
+		<result property="sexArRate" column="SEX_AR_RATE" />
+		<result property="thefArRate" column="THEF_AR_RATE" />
+		<result property="violArRate" column="VIOL_AR_RATE" />
+	</resultMap>
+
+	<select id="getCrimeNum" resultMap="crimeCount">
+		SELECT year, homicide,
+		robber, sexual, theft, violence FROM seoul_crime
+		where year in
+		(2004,2007,2010,2013,2016,2019,2022) ORDER BY year ASC
+	</select>
+
+	<select id="getArrestNum" resultMap="crimeCount">
+		SELECT year, homi_ar_rate,
+		rob_ar_rate, sex_ar_rate, thef_ar_rate,
+		viol_ar_rate FROM seoul_crime
+		where year in
+		(2004,2007,2010,2013,2016,2019,2022) ORDER BY year ASC
+	</select>
+
+
+
+
+	<resultMap id="guGrade"
+		type="com.spring.newseekers.seoul.model.GuGradeVO">
+		<result property="Y2004" column="Y2004" />
+		<result property="Y2005" column="Y2005" />
+		<result property="Y2006" column="Y2006" />
+		<result property="Y2007" column="Y2007" />
+		<result property="Y2008" column="Y2008" />
+		<result property="Y2009" column="Y2009" />
+		<result property="Y2010" column="Y2010" />
+		<result property="Y2011" column="Y2011" />
+		<result property="Y2012" column="Y2012" />
+		<result property="Y2013" column="Y2013" />
+		<result property="Y2014" column="Y2014" />
+		<result property="Y2015" column="Y2015" />
+		<result property="Y2016" column="Y2016" />
+		<result property="Y2017" column="Y2017" />
+		<result property="Y2018" column="Y2018" />
+		<result property="Y2019" column="Y2019" />
+		<result property="Y2020" column="Y2020" />
+		<result property="Y2021" column="Y2021" />
+		<result property="Y2022" column="Y2022" />
+	</resultMap>
+
+	<select id="getGuGradeNum" resultMap="guGrade">
+		SELECT y2004, y2007,
+		y2010,
+		y2013, y2016, y2019, y2022 FROM gu_secugrade
+		ORDER BY local
+		DESC
+	</select>
+
+	<resultMap id="secuFacil"
+		type="com.spring.newseekers.seoul.model.SecuFaciVO">
+		<result property="year" column="YEAR" />
+		<result property="lights" column="LIGHTS" />
+		<result property="cctv" column="CCTV" />
+		<result property="policestation" column="POLICESTATION" />
+		<result property="policeman" column="POLICEMAN" />
+	</resultMap>
+
+	<select id="getSecuFaci" resultMap="secuFacil">
+		select * from
+		seoul_secufacil
+		where year in
+		(2004,2007,2010,2013,2016,2019,2022)
+	</select>
+
+	<resultMap id="secuIndex"
+		type="com.spring.newseekers.seoul.model.SecuIndexVO">
+		<result property="local" column="LOCAL" />
+		<result property="rowNum" column="ROW_NUMBER" />
+		<result property="Y2021" column="Y2021" />
+		<result property="Y2022" column="Y2022" />
+		<result property="Y2023" column="Y2023" />
+	</resultMap>
+
+	<resultMap id="guName"
+		type="com.spring.newseekers.seoul.model.GuNameVO">
+		<result property="local" column="LOCAL" />
+		<result property="guName" column="GUNAME" />
+	</resultMap>
+
+	<select id="getSecuIndex" resultMap="secuIndex"
+		parameterType="String">
+		<![CDATA[SELECT row_number, guname FROM
+		(SELECT row_number() OVER (ORDER BY si.${value} DESC) AS row_number, gu.guname FROM gu_name gu JOIN secuIndex si ON gu.local = si.local) gu_query WHERE row_number <= 5]]>
+	</select>
+
+	<resultMap id="safety"
+		type="com.spring.newseekers.seoul.model.SafetyVO">
+		<result property="y2021" column="Y2021" />
+		<result property="y2022" column="Y2022" />
+		<result property="y2023" column="Y2023" />
+	</resultMap>
+
+	<select id="getSafety" resultMap="safety" parameterType="string">
+<![CDATA[SELECT "row_number", guname 
+		FROM (SELECT row_number() OVER (ORDER BY si.${value} DESC) AS "row_number", gu.guname 
+		FROM gu_name gu JOIN PERCEIVEDSAFETY si ON gu.local = si.local) gu_query WHERE "row_number" <= 5]]>
+	</select>
+
+
+	<resultMap id="secuinfo"
+		type="com.spring.newseekers.seoul.model.SecuInfoVO">
+		<result property="rowNumber" column="row_number" />
+		<result property="guName" column="guname" />
+		<result property="secuValue" column="Y2021" />
+		<result property="secuValue" column="Y2022" />
+		<result property="secuValue" column="Y2023" />
+	</resultMap>
+
+	<select id="getSecuInfo" resultMap="secuinfo"
+		parameterType="string">
+		<![CDATA[ SELECT row_number, guname, ${value} FROM (SELECT row_number() OVER (ORDER BY si.${value} DESC) AS row_number, gu.guname, si.${value} FROM gu_name gu JOIN secuIndex si ON gu.local = si.local) gu_query WHERE row_number <= 5]]>
+	</select>
+
+	<resultMap id="perceivedSecu"
+		type="com.spring.newseekers.seoul.model.PerceivedSecuVO">
+		<result property="rowNumber" column="row_number" />
+		<result property="guName" column="guname" />
+		<result property="secuValue" column="Y2021" />
+		<result property="secuValue" column="Y2022" />
+		<result property="secuValue" column="Y2023" />
+	</resultMap>
+
+	<select id="getPerceivedSecu" resultMap="perceivedSecu"
+		parameterType="string">
+		<![CDATA[ SELECT row_number, guname, ${value} FROM (SELECT row_number() OVER (ORDER BY si.${value} DESC) AS row_number, gu.guname, si.${value} FROM gu_name gu JOIN PERCEIVEDSAFETY si ON gu.local = si.local) gu_query WHERE row_number <= 5]]>
+	</select>
+
+	<resultMap id="gCrimeDB"
+		type="com.spring.newseekers.seoul.model.DbGlobalCrimeVO">
+		<result property="name" column="LOCAL_NM" />
+		<result property="year" column="YEAR" />
+		<result property="homicide" column="HOMICIDE" />
+		<result property="robber" column="ROBBER" />
+		<result property="sexual" column="SEXUAL" />
+		<result property="theft" column="THEFT" />
+		<result property="violence" column="VIOLENCE" />
+	</resultMap>
+
+
+
+	<select id="getGCrimeDB" resultMap="gCrimeDB">
+		SELECT * FROM globalCrime
+		WHERE (local_nm = '프랑스' OR local_nm = '독일' OR
+		local_nm = '일본' OR
+		local_nm = '대한민국') AND local_nm IS NOT NULL AND
+		year != 2017
+	</select>
+
+
+	<resultMap id="gCrimeApi"
+		type="com.spring.newseekers.seoul.model.ApiGlobalCrimeVO">
+		<result property="localName" column="local_NM" />
+		<result property="year" column="YEAR" />
+		<result property="newData" column="HOMICIDE" />
+		<result property="newData" column="ROBBER" />
+		<result property="newData" column="SEXUAL" />
+		<result property="newData" column="THEFT" />
+		<result property="newData" column="VIOLENCE" />
+	</resultMap>
+
+
+
+
+	<insert id="mergeCrimeData"
+		parameterType="com.spring.newseekers.seoul.model.ApiGlobalCrimeVO">
+    <![CDATA[
+    MERGE INTO globalcrime target
+    USING (SELECT #{localName} AS localName, #{year} AS year, #{newData} AS newData FROM dual) source
+    ON (target.local_NM = source.localName AND target.year = source.year)
+    WHEN MATCHED THEN
+        UPDATE SET
+            homicide = CASE WHEN #{crimeCode} = 'T189403025013347' THEN source.newData ELSE homicide END,
+            robber = CASE WHEN #{crimeCode} = 'T187993025051517' THEN source.newData ELSE robber END,
+            sexual = CASE WHEN #{crimeCode} = 'T185573025062134' THEN source.newData ELSE sexual END,
+            theft = CASE WHEN #{crimeCode} = 'T189473025047133' THEN source.newData ELSE theft END,
+            violence = CASE WHEN #{crimeCode} = 'T185963025029492' THEN source.newData ELSE violence END
+    WHEN NOT MATCHED THEN
+        INSERT (local_NM, year, homicide, robber, sexual, theft, violence)
+        VALUES (#{localName}, #{year}, 
+                CASE WHEN #{crimeCode} = 'T189403025013347' THEN #{newData} ELSE NULL END,
+                CASE WHEN #{crimeCode} = 'T187993025051517' THEN #{newData} ELSE NULL END,
+                CASE WHEN #{crimeCode} = 'T185573025062134' THEN #{newData} ELSE NULL END,
+                CASE WHEN #{crimeCode} = 'T189473025047133' THEN #{newData} ELSE NULL END,
+                CASE WHEN #{crimeCode} = 'T185963025029492' THEN #{newData} ELSE NULL END)
+    ]]>
+	</insert>
+</mapper>
+
+
+
+

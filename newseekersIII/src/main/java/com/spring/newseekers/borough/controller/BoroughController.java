@@ -35,7 +35,6 @@ public class BoroughController {
 	@CrossOrigin(origins = "http://localhost:3000")
 	@GetMapping(value="/borough/getPopulation")
 	public @ResponseBody PopulationVO getPopulation(@RequestParam String guNameValue){
-	    System.out.println("guNameValue : " +guNameValue);
 	    return boroughService.getPopulation(guNameValue);
 	}
 
@@ -54,7 +53,6 @@ public class BoroughController {
 	@GetMapping(value="/borough/getPoliceStations")
 	@ResponseBody
 	public List<PoliceStationVO> getPoliceStations(@RequestParam("guNameValue") String guNameValue) {
-		System.out.println(boroughService.getPoliceStations(guNameValue));
 		return boroughService.getPoliceStations(guNameValue);
 	}
 
