@@ -92,21 +92,21 @@ st/css/bootstrap.min.css"
             <div class="carousel-item active" data-bs-interval="2000">
                 <img src="<c:url value='./img/carousel1.jpg'/>" class="d-block w-100"
 					alt="...">
-                <a href="./seoul_main.jsp"><button type="button"
+                <a href="/newseekers/seoul_main"><button type="button"
 						class="btn1 btn-outline-dark"> 바로가기 </button></a>
 
             </div>
             <div class="carousel-item">
                 <img src="<c:url value='./img/carousel2.jpg'/>" class="d-block w-100"
 					alt="...">
-                <a href="./gu_page.jsp"><button type="button"
+                <a href="/newseekers/borough/borough_saftyInfo"><button type="button"
 						class="btn1 btn-outline-dark"> 바로가기 </button></a>
 
             </div>
             <div class="carousel-item">
                 <img src="<c:url value='./img/carousel3.jpg'/>" class="d-block w-100"
 					alt="...">
-                <a href="./preview.jsp"><button type="button"
+                <a href="/newseekers/predict"><button type="button"
 						class="btn3 btn-outline-dark"> 바로가기</button></a>
             </div>
         </div>

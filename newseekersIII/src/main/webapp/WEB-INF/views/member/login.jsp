@@ -26,7 +26,7 @@
 
 	<div id="login_container">
 		<div class="row justify-content-center">
-			<div class="col-md-5">
+			<div id="loginBox" class="col-md-5">
 				<form action="/newseekers/member/login" method="post" name="reg_frm">
 					<h1 class="text-center fw-bold mb-7" id="logo">NewSeekers</h1>
 					<br> <br>

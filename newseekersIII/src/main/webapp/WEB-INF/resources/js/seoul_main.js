@@ -89,7 +89,7 @@ async function globalData() {
         var gerHomi = [], gerRobb = [], gerSexu = [], gerThef = [], gerViol = [];
         var japHomi = [], japRobb = [], japSexu = [], japThef = [], japViol = [];
         var fraHomi = [], fraRobb = [], fraSexu = [], fraThef = [], fraViol = [];
-        console.log(jsonData);
+
 
         jsonData.forEach(json => {
             if (json.name == "대한민국") {
@@ -255,12 +255,13 @@ async function ajaxArData() {
         contentType: 'application/json',
         async: true,
         success: function (datas) {
-            datas.myArrayList.forEach(array => {
-                homiArRate.push(array.map.homiArRate);
-                robArRate.push(array.map.robArRate);
-                sexArRate.push(array.map.sexArRate);
-                thefArRate.push(array.map.thefArRate);
-                violArRate.push(array.map.violArRate);
+            datas.forEach(arData => {
+
+                homiArRate.push(arData.homiArRate);
+                robArRate.push(arData.robArRate);
+                sexArRate.push(arData.sexArRate);
+                thefArRate.push(arData.thefArRate);
+                violArRate.push(arData.violArRate);
             })
 
             return homiArRate, robArRate, sexArRate, thefArRate, violArRate;
@@ -939,7 +940,7 @@ sidebar.addEventListener("mouseenter", function () {
 async function secuIndex(year) {
     let indexYear = document.getElementById(year).value;
     try {
-        const response = await fetch("./secuIndex.do?year=" + indexYear);
+        const response = await fetch("./secuIndex.do/" + indexYear);
         const jsonArray = await response.text();
         const jsonData = JSON.parse(jsonArray);
 
@@ -956,7 +957,7 @@ async function secuIndex(year) {
 async function safety(year) {
     let indexYear = document.getElementById(year).value;
     try {
-        const response = await fetch("./safety.do?year=" + indexYear);
+        const response = await fetch("./safety.do/" + indexYear);
         const jsonArray = await response.text();
         const jsonData = JSON.parse(jsonArray);
 
@@ -1023,9 +1024,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             var activeTabButton = document.querySelector('.nav-tabs .nav-link.active');
             var selectedYearValue = activeTabButton.getAttribute('value');
-            const response = await fetch("./secuInfo.do?year=" + selectedYearValue);
+            const response = await fetch("./secuInfo.do/" + selectedYearValue);
             const jsonArray = await response.text();
             const jsonData = JSON.parse(jsonArray);
+
 
             jsonData.forEach(json => {
                 guname.push(json["guName"]);
@@ -1059,7 +1061,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
 
         secuRank.addEventListener("click", function () {
-            window.location.href = './gu_page.jsp';
+            window.location.href = '/newseekers/borough/borough_saftyInfo';
         })
     })
 
@@ -1080,7 +1082,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             var activeTabButton = document.querySelector('.nav-tabs .nav-link.active');
             var selectedYearValue = activeTabButton.getAttribute('value');
-            const response = await fetch("./perceivedSecuInfo.do?year=" + selectedYearValue);
+            const response = await fetch("./perceivedSecuInfo.do/" + selectedYearValue);
             const jsonArray = await response.text();
             const jsonData = JSON.parse(jsonArray);
 
@@ -1118,7 +1120,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
 
         secuRank2.addEventListener("click", function () {
-            window.location.href = './gu_page.jsp';
+            window.location.href = '/newseekers/borough/borough_saftyInfo';
         })
 
     })

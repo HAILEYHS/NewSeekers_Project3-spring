@@ -370,8 +370,8 @@ function createPoliceStationTable(data) {
   modalwindow.addEventListener('click', function () {
     modalwindow.style.display = "none";
   })
-
 }
+
 
 
 var modalwindow2 = document.querySelector("#policeq")

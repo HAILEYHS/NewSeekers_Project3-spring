@@ -409,7 +409,7 @@
 		<!--sidebar-->
 		<div id="sidebar">
 
-			<a href="./Index.jsp" id="home" data-bs-toggle="tooltip" data-bs-placement="right" title="홈으로"
+			<a href="/newseekers/" id="home" data-bs-toggle="tooltip" data-bs-placement="right" title="홈으로"
 				data-bs-custom-class="custom-tooltip" class="fa fa-home"></a> <a href="#" id="upsideIcon"
 				data-bs-toggle="tooltip" data-bs-placement="right" title="상단으로" data-bs-custom-class="custom-tooltip"
 				class="fa-solid fa-arrow-up"></a>

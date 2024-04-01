@@ -11,3 +11,28 @@
 h1 {
 	color: rgb(108, 117, 125);
 }
+#loginBox{
+	width:25%;
+	margin: 70px 0px 70px 0px;
+}
+
+/* 링크 a태그 데코레이션 빼려고 */
+
+a:link {
+    /* 텍스트 링크 들어가기전 */
+    text-decoration: none;
+    color: black;
+}
+
+a:visited {
+    /* 텍스트 링크 들어갔던것 */
+    text-decoration: none;
+    color: black;
+}
+
+a:active {
+    /* 텍스트 링크 클릭하고 뗄때까지 */
+    text-decoration: none;
+    /* 텍스트 링크 밑줄 없애기 */
+    color: black;
+}
